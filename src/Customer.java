@@ -1,7 +1,13 @@
-public class Customer {
-	String cusName;
-	String cusContact;
-	Boolean cusMembership;
+import java.io.Serializable;
+
+public class Customer implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String cusName;
+	private String cusContact;
+	private Boolean cusMembership;
 	
 	public Customer() {
 		cusName = "NULL";
@@ -46,32 +52,5 @@ public class Customer {
 	public void cancelMembership() {
 		this.cusMembership = false;
 	}
-	/*
-	public void createCustomerDB() {
-		try {
-			File myObj = new File("customerDB.txt");
-			if (myObj.createNewFile()) {
-				System.out.println("File created: " + myObj.getName());
-			} else {
-			}
-		} catch (IOException e) {
-			System.out.println("An Error occured.");
-			e.printStackTrace();
-		}
-	}
-	public void updateCustomerDB(Customer c) {
-		try {
-			FileWriter myWriter = new FileWriter("customerDB.txt");
-			myWriter.write("{\nCustomer Name: " + c.getCustomerName() 
-							+ "\nCustomer Contact: " + c.getCustomerContact() 
-							+ "\nCustomer Membership: " + c.membershipStatus()
-							+"\n}");
-			myWriter.close();
-			System.out.println("Successfully added to CustomerDB.");
-		} catch (IOException e) {
-			System.out.println("An error occured.");
-			e.printStackTrace();
-		}
-	}
-	*/
+	
 }
