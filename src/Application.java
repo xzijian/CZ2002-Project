@@ -11,10 +11,13 @@ public class Application {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        //load restaurant data
+    	Restaurant.loadState();//load restaurant data
         //login
         showOptions();
 
+        
+        Restaurant.saveState();
+    	System.exit(0);
         }
 
     public static void showOptions() {
@@ -30,6 +33,7 @@ public class Application {
 
             switch (choice) {
                 case 1:
+                	ReservationUi.reservationChoice();
                     continue;
                 case 2:
                     continue;

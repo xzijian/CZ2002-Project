@@ -1,4 +1,4 @@
-
+package restaurant;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,8 +12,9 @@ public class ReservationUi {
 		do {
             System.out.println("\nInput your choice: ");
             System.out.println("1. Walk in");
-            System.out.println("2. Reservation");
-            System.out.println("3. Available Reservations");
+            System.out.println("2. Available Reservations");
+            System.out.println("3. Add Reservation");
+            System.out.println("4. Remove Reservation");
 
         	System.out.println();
         	
@@ -26,7 +27,13 @@ public class ReservationUi {
         		break;
         	case 3:
         		break;
+        	case 4:
+        		break;
+        	case 5:
+        		break;
+        	default:
+        		System.out.println("Invalid input please try again.");
         	}
-        } while (choice < 4);
+        } while (choice < 6);
 	}
 }
