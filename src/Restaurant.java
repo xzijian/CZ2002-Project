@@ -20,7 +20,7 @@ public class Restaurant {
 	
 	
 	public static final Path 	DATAPATH 					= Paths.get(System.getProperty("user.dir"), "data");
-	public static final String 	RESTAURANT_FILE_NAME		= "restaurant.dat";	
+	public static final String 	RESTAURANT_FILE_NAME		= "restaurantSaveLoad.dat";	
 	public static ArrayList<Staff> employeeStaff;
 	
 	
