@@ -1,5 +1,4 @@
-package restaurant;
-import java.io.File;
+	import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,6 +49,7 @@ public class Restaurant {
               
             // Method for serialization of object
             out.writeObject(restaurantState);
+			System.out.println("State saved");
               
             out.close();
             file.close();

@@ -35,7 +35,7 @@ public class Tables {
         return availableTablesOfTwo;
     }
 
-    public int makeReservation(String dateTime, int pax)
+    public int makeReservation(String dateTime, int pax, Customer customer)
     {
         int i;
         if (pax <= 2) {
@@ -50,7 +50,7 @@ public class Tables {
 
         for (; i < reservedTable.length; i++) {
             if (reservedTable[i] == null) {
-                reservedTable[i] = new Reservation(dateTime, pax, i+1);
+                reservedTable[i] = new Reservation(dateTime, pax, i+1, customer);
                 if (i < numOfTablesOfTwo) {
                     numOfTablesOfTwo--;
                 } else if (i < numOfTablesOfSix) {

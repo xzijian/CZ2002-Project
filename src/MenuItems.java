@@ -1,4 +1,3 @@
-package entity;
 
 public abstract class MenuItems {
 	private String Name;

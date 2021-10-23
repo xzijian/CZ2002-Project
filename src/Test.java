@@ -1,4 +1,6 @@
-package restaurant;
+
+
+
 import java.util.Scanner;
 
 
@@ -25,16 +27,14 @@ public class Test {
 	                	ReservationUi.reservationChoice();
 	                    break;
 	                case 2:
-	                	Staff tom = new Staff("tom", true, 1, "dog");
+	                	restaurant.Staff tom = new restaurant.Staff("tom", true, 1, "dog");
 	                	Restaurant.employeeStaff.add(tom);
 	                	break;
 	                case 3:
 	                	System.out.println("Staff that were added before.");
-	                	int i = 0;
-	                	while(Restaurant.employeeStaff.get(i).getStaffName() != null) {
-	                		System.out.println(Restaurant.employeeStaff.get(i).getStaffName());
-	                		i++;
-	                	}
+						for (int i = 0; i < Restaurant.employeeStaff.size(); i ++) {
+							System.out.println(Restaurant.employeeStaff.get(i).getStaffName());
+						}
 	                	
 	                	break;
 	                case 4:

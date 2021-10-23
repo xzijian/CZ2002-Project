@@ -10,7 +10,6 @@ public class Reservation {
         this.cust = cust;
         this.numOfPax = numOfPax;
         this.tableNum = tableNum;
-        // add customer object
         // generate random reservation id
     }
 

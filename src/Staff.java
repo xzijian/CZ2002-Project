@@ -1,7 +1,6 @@
 package restaurant;
-import java.io.Serializable;
 
-public class Staff implements Serializable{
+public class Staff {
 	private String staffName;
 	private boolean gender;
 	private int employeeId;
