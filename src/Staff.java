@@ -1,5 +1,3 @@
-package restaurant;
-
 public class Staff {
 	private String staffName;
 	private boolean gender;

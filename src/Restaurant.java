@@ -1,4 +1,4 @@
-	import java.io.File;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,8 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
-import restaurant.Staff;
 
 public class Restaurant {
 	
@@ -22,6 +20,7 @@ public class Restaurant {
 	public static final Path 	DATAPATH 					= Paths.get(System.getProperty("user.dir"), "data");
 	public static final String 	RESTAURANT_FILE_NAME		= "restaurantSaveLoad.dat";	
 	public static ArrayList<Staff> employeeStaff;
+	public static ArrayList<MenuItems> foodMenu;
 	
 	
 	public static void saveState() {
@@ -105,6 +104,7 @@ public class Restaurant {
 	
 	public static void initRestaurant() {
 		initStaff();
+		initFoodMenu();
 	}
 	
 	public static void initStaff(){
@@ -112,6 +112,13 @@ public class Restaurant {
 		staffs.add(new Staff("John", true, 1, "Dog"));
 
 		Restaurant.employeeStaff = staffs;
+	}
+
+	public static void initFoodMenu(){
+		ArrayList<MenuItems> menuItems = new ArrayList<MenuItems>();
+		AlaCarte AC1 = new AlaCarte("NSFC TAIWAN", "BEST", Category.MAINCOURSE, 0.99);
+		menuItems.add((MenuItems) AC1);
+		Restaurant.foodMenu = menuItems;
 	}
 	
 	/*public Restaurant() {
