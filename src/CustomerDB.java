@@ -68,6 +68,7 @@ public class CustomerDB {
 	}
 
 	public ArrayList<Customer> returnArrayListOfCustomer() throws FileNotFoundException {
+		ArrayList<Customer> cusArrList = new ArrayList<Customer>();	
 		try {
 	    	List<String> customerLines = Files.readAllLines(java.nio.file.Paths.get("TextFolder/customerDB.txt"));
 	    	
