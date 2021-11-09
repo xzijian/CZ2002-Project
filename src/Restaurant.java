@@ -23,6 +23,7 @@ public class Restaurant {
 	public static final String 	RESTAURANT_FILE_NAME		= "restaurantSaveLoad.dat";	
 	public static ArrayList<Staff> employeeStaff;
 	public static ArrayList<MenuItems> foodMenu;
+	public static ArrayList<Customer> customersList ;
 	
 	
 	public static void saveState() {
@@ -35,7 +36,8 @@ public class Restaurant {
 		}
 		
 		Object[] restaurantState 	= {
-				employeeStaff};
+				employeeStaff,
+				customersList};
 		
 		Path 				saveFileName 	= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileOutputStream   	file 			= null;
@@ -82,6 +84,7 @@ public class Restaurant {
             restaurantState = (Object[])in.readObject();
             if(restaurantState != null){
 				employeeStaff = (ArrayList<Staff>) restaurantState[0];
+				customersList = (ArrayList<Customer>) restaurantState[1];
 			}
               
             in.close();
@@ -106,7 +109,7 @@ public class Restaurant {
 	
 	public static void initRestaurant() {
 		initStaff();
-		initFoodMenu();
+		initFoodMenu();	
 	}
 	
 	public static void initStaff(){
@@ -123,12 +126,6 @@ public class Restaurant {
 		Restaurant.foodMenu = menuItems;
 	}
 	
-	/*public Restaurant() {
-		openingHours = "12pm-12am";
-		isOpen = true;
-		Tables totalTables = new Tables(6, 3, 2);
-	}*/
-	
 	public void addStaff(String name, boolean gender, int id, String jobTitle) {
 		Staff staffTemplate = new Staff(name , gender, id, jobTitle);
 		employeeStaff.add(staffTemplate);
@@ -137,4 +134,32 @@ public class Restaurant {
 	public Staff getStaff(int id) {
 		return employeeStaff.get(id-1);
 	}
-}
+	//check if a customer exist via their phone number.
+	public static int checkCustomer(String name, String number, boolean member) {
+		int exist = 0;
+		if (Restaurant.customersList == null)
+			System.out.println("I am empty");
+		for (Customer customer : Restaurant.customersList) {
+			if (number.equals(customer.getCustomerContact()))
+			{
+				System.out.println("Customer exists");
+				exist = 1;
+				return exist;
+			}
+		}
+		return exist;
+	}
+	//obtain a customer via their number.
+	public static Customer getCustomer(String number) {
+		for (Customer customer :  Restaurant.customersList) {
+			if (customer.getCustomerContact().equals(number))
+			{
+				System.out.println("Customer found.");
+				return customer;
+			}
+				
+		}
+		System.out.println("Customer does not exist");
+		return null;		
+	}
+}	
