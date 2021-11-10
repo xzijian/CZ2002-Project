@@ -1,3 +1,5 @@
+package Entities;
+
 public class orderItems{
     private MenuItems orderItem;
     private double chargedPrice;

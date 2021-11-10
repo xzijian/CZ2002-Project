@@ -1,4 +1,4 @@
-import Entities.Customer;
+package Entities;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ public class Restaurant {
 
 	private String openingHours;
 	private boolean isOpen;
-	//ArrayList<Staff> employeeStaff = new ArrayList<Staff>();
+	//ArrayList<Entities.Staff> employeeStaff = new ArrayList<Entities.Staff>();
 
 
 
@@ -24,6 +24,8 @@ public class Restaurant {
 	public static ArrayList<Staff> employeeStaff;
 	public static ArrayList<MenuItems> foodMenu;
 	public static ArrayList<Customer> customersList ;
+	public static ArrayList<Order> orders ;
+	public static ArrayList<Order> completedOrders ;
 
 
 	public static void saveState() {

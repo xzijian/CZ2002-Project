@@ -1,7 +1,9 @@
+package Entities;
+
 import java.util.Calendar;
 
 /**
- * Invoice class represents an invoice
+ * Entities.Invoice class represents an invoice
  * @author xie zijian
  * @version 1.0
  * @since 2021-11-10
@@ -30,7 +32,7 @@ public class Invoice {
 
     public void printInvoice(){
         System.out.println("Date & Time: " + this.order.getDateTime());
-        System.out.println("Invoice Number: " + this.invoiceNumber);
+        System.out.println("Entities.Invoice Number: " + this.invoiceNumber);
         System.out.println("Items ordered: " + this.order);
         System.out.println("Subtotal: " + price);
         System.out.println("GST: " + gst);

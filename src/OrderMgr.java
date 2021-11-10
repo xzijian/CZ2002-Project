@@ -1,8 +1,11 @@
+import Entities.Order;
+import Entities.Restaurant;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Order Manager class allowing user to select an order to edit
+ * Entities.Order Manager class allowing user to select an order to edit
  * @author xie zijian
  * @version 1.0
  * @since 2021-11-10
@@ -31,7 +34,7 @@ public class OrderMgr {
 
         System.out.println("\nSelect an order.");
         for(Order o : orders){
-            System.out.println("(" + index++ + ") OrderID: " + o.getOrderID() + "    TableID: " + o.getFromReservation().gettableNum());
+            System.out.println("(" + index++ + ") OrderID: " + o.getOrderID() + "    TableID: " + o.getFromReservation().getTableNum());
         }
         System.out.println("Enter the number of your choice: ");
         int choice = sc.nextInt();

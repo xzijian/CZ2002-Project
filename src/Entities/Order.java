@@ -1,3 +1,6 @@
+package Entities;
+
+import Entities.Invoice;
 import Entities.Reservation;
 
 import java.util.Date;
@@ -6,7 +9,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 /**
- * Order class represents an order
+ * Entities.Order class represents an order
  * @author xie zijian
  * @version 1.0
  * @since 2021-11-10

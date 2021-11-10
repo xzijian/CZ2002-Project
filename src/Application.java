@@ -1,7 +1,8 @@
+import Entities.Restaurant;
+import Entities.Staff;
 import UI.MenuUI;
 import UI.ReservationUI;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Application {
@@ -47,7 +48,7 @@ public class Application {
     }
 
     public void login() { //return staff instead of void
-        System.out.println("\t\t\tBrielle's Bistro Staff Interface\n");
+        System.out.println("\t\t\tBrielle's Bistro Entities.Staff Interface\n");
         System.out.print("Enter EmployeeID: ");
         String empID = sc.nextLine();
 

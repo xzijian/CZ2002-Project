@@ -1,3 +1,6 @@
+import Entities.Customer;
+import Entities.Restaurant;
+
 public class CustomerMgr {
 	
 	//check if a customer exist via their phone number. Ensure no duplicate.

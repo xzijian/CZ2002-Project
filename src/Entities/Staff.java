@@ -1,3 +1,5 @@
+package Entities;
+
 import java.io.Serializable;
 
 public class Staff implements Serializable{
