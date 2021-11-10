@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ * Order class represents an order
+ * @author xie zijian
+ * @version 1.0
+ * @since 2021-11-10
+ */
+
 public class Order {
     private Staff staff;
     private Reservation reservation;
     private ArrayList<orderItems> itemOrdered;
     private Invoice invoice;
     private Date dateTime;
+    private int OrderID;
 
     public Order(Staff createdBy, Reservation fromReservation){
         this.itemOrdered = new ArrayList<orderItems>();
@@ -17,16 +25,14 @@ public class Order {
         this.reservation = fromReservation;
         this.dateTime = Calendar.getInstance().getTime();
         this.invoice = null;
+        this.OrderID = Calendar.getInstance().hashCode();
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
     public Invoice getInvoice(Invoice invoice) {return this.invoice;}
-    public Reservation getFromReservation(){
-        return this.reservation;
-    }
+    public Reservation getFromReservation(){return this.reservation;}
     public Date getDateTime() {return dateTime;}
+    public int getOrderID(){ return this.OrderID; }
+    public ArrayList<orderItems> getOrderLineItems(){return this.itemOrdered;}
 
     public void OrderItems(){
         if(this.invoice != null) return;
@@ -36,7 +42,7 @@ public class Order {
 
         Scanner sc = new Scanner(System.in);
         ArrayList<MenuItems> foodMenu = Restaurant.foodMenu;
-        System.out.println("\nSelect the food item to add to the order:");
+        System.out.println("\nSelect the menu item to add:");
         for(MenuItems menuItem : foodMenu) System.out.println("(" + index++ + ") " + menuItem.getName());
         System.out.print("Enter your choice : ");
         choice = sc.nextInt();
@@ -47,9 +53,20 @@ public class Order {
             this.itemOrdered.add(itemOrdering);
             System.out.println(orderItemAdded + " added to order.");
         }catch(IndexOutOfBoundsException e){
-            System.out.println("Add order item failed! (Invalid index provided)");
+            System.out.println("Error! Invalid index entered!");
         }
     }
+    public void createInvoice(){
+        if(this.invoice != null) return;
+        this.invoice = new Invoice(this);
+        //this.reservation.getReserveTable().setStatus(TableStatus.VACATED);
+    }
 
+    public double calculatePrice(){
+        double price = 0;
+        for(orderItems o : this.itemOrdered)
+            price += o.getMenuItem().getPrice();
+        return price;
+    }
 
 }

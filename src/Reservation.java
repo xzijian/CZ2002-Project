@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public class Reservation {
     private String datetime;
     private int numOfPax;
@@ -10,7 +12,10 @@ public class Reservation {
         this.cust = cust;
         this.numOfPax = numOfPax;
         this.tableNum = tableNum;
-        // generate random reservation id
+        this.reservationID = Calendar.getInstance().hashCode();
     }
+
+    public int getreservationID(){ return this.reservationID; };
+    public int gettableNum(){ return this.tableNum; };
 
 }

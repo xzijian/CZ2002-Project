@@ -1,4 +1,3 @@
-package restaurant;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +23,8 @@ public class Restaurant {
 	public static ArrayList<Staff> employeeStaff;
 	public static ArrayList<MenuItems> foodMenu;
 	public static ArrayList<Customer> customersList ;
+	public static ArrayList<Order> orders;
+	public static ArrayList<Order> completedOrders;
 	
 	
 	public static void saveState() {
