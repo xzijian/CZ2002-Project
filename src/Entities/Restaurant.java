@@ -39,7 +39,11 @@ public class Restaurant {
 
 		Object[] restaurantState 	= {
 				employeeStaff,
-				customersList};
+				customersList,
+				foodMenu,
+				customersList,
+				orders,
+				completedOrders};
 
 		Path 				saveFileName 	= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileOutputStream   	file 			= null;
@@ -87,6 +91,9 @@ public class Restaurant {
 			if(restaurantState != null){
 				employeeStaff = (ArrayList<Staff>) restaurantState[0];
 				customersList = (ArrayList<Customer>) restaurantState[1];
+				foodMenu = (ArrayList<MenuItems>) restaurantState[2];
+				orders = (ArrayList<Order>) restaurantState[3];
+				completedOrders = (ArrayList<Order>) restaurantState[4];
 			}
 
 			in.close();

@@ -54,5 +54,6 @@ public class Customer implements Serializable{
 	public void cancelMembership() {
 		this.cusMembership = false;
 	}
-	
+
+	public boolean getMembership(){ return this.cusMembership;}
 }

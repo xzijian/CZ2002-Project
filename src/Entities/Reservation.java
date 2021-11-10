@@ -21,5 +21,5 @@ public class Reservation implements Serializable {
     public int getTableNum() {
         return this.tableNum;
     }
-
+    public Customer getCust(){ return this.cust; }
 }

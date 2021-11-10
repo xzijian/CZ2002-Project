@@ -1,5 +1,6 @@
 package Entities;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -9,13 +10,14 @@ import java.util.Calendar;
  * @since 2021-11-10
  */
 
-public class Invoice {
+public class Invoice implements Serializable {
     private Order order;
     private double price;
     private double gst;
     private double totalPrice;
     private Calendar date;
     private int invoiceNumber;
+    private Customer cust;
 
     public Invoice(Order order){
         this.order = order;
@@ -23,7 +25,11 @@ public class Invoice {
         this.invoiceNumber = Calendar.getInstance().hashCode();
         this.price = order.calculatePrice();
         this.gst = Math.round(0.07 * this.price * 100.0)/100.0;
-        this.totalPrice = this.price + this.gst;
+        this.cust = this.order.getFromReservation().getCust();
+        if (cust.getMembership()) {
+            this.totalPrice = (0.9)*(price + gst);
+        }
+        else this.totalPrice = this.price + this.gst;
     }
     public int getInvoiceNumber(){ return this.invoiceNumber; }
     public Calendar getDate(){ return this.date; }

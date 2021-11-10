@@ -3,6 +3,7 @@ package Entities;
 import Entities.Invoice;
 import Entities.Reservation;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -15,7 +16,7 @@ import java.util.Scanner;
  * @since 2021-11-10
  */
 
-public class Order {
+public class Order implements Serializable {
     private Staff staff;
     private Reservation reservation;
     private ArrayList<orderItems> itemOrdered;
