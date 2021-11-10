@@ -1,16 +1,14 @@
+import Entities.Customer;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.*;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 
 public class CustomerDB {
 	private static final String filepath= "TextFolder/customerDB.txt";
@@ -44,7 +42,7 @@ public class CustomerDB {
 						String line = sc.nextLine();
 						lineNumber++;
 						if (line.contains(c.getCustomerContact())) {
-							System.out.println("Customer already registered");  
+							System.out.println("Entities.Customer already registered");
 							exist = 1;
 						}
 					}
@@ -68,12 +66,13 @@ public class CustomerDB {
 	}
 
 	public ArrayList<Customer> returnArrayListOfCustomer() throws FileNotFoundException {
-		ArrayList<Customer> cusArrList = new ArrayList<Customer>();	
+		ArrayList<Customer> cusArrList = new ArrayList<Customer>();
+
 		try {
 	    	List<String> customerLines = Files.readAllLines(java.nio.file.Paths.get("TextFolder/customerDB.txt"));
 	    	
 	    	for (String line: customerLines) {
-	    		Customer customer = new Customer1();
+	    		Customer customer = new Customer();
 	    		String[] tokens = line.split("-");
 	    		customer.setCustomerName(tokens[0]);
 	    		customer.setContact(tokens[1]);

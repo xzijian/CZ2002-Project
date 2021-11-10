@@ -1,27 +1,26 @@
-
-
 import UI.MenuUI;
+import UI.ReservationUI;
 
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Application {
 
-    private restaurant.Staff current_staff = null;
+    private Staff current_staff = null;
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-    	Restaurant.loadState();//load restaurant data
+        Restaurant.loadState();//load restaurant data
         //login
         showOptions();
 
-        
         Restaurant.saveState();
-    	System.exit(0);
-        }
+        System.exit(0);
+    }
 
     public static void showOptions() {
-        while (true) {
+        int flag  = 1;
+        while (flag == 1) {
             System.out.println("\t==STAFF INTERFACE==");
             System.out.println("1.Access Reservations");
             System.out.println("2.Update Orders");
@@ -33,7 +32,7 @@ public class Application {
 
             switch (choice) {
                 case 1:
-                	ReservationUi.reservationChoice();
+                    ReservationUI.reservationChoice();
                     continue;
                 case 2:
                     continue;
@@ -41,6 +40,7 @@ public class Application {
                     MenuUI.MenuUIOptions();
                     continue;
                 case 4:
+                    flag = 0;
                     break;
             }
         }
@@ -56,7 +56,4 @@ public class Application {
         System.out.println("Logged in as: Xavier");
     }
 
-    }
-
-
-
+}
