@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Staff implements Serializable {
+public class Staff implements Serializable{
 	private String staffName;
 	private boolean gender;
 	private int employeeId;
