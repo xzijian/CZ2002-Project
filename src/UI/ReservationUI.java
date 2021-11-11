@@ -49,7 +49,7 @@ public class ReservationUI {
 
 	public static void createReservationUI() throws ParseException {
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter Entities.Customer name: ");
+		System.out.print("Phone number: ");
 		//get customer
 
 		System.out.print("Number of pax: ");
@@ -64,9 +64,6 @@ public class ReservationUI {
 		String timeStr = scan.nextLine();
 		DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
 		Date t = dateFormat.parse(timeStr);
-
-
-
 
 
 

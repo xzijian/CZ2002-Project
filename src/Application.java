@@ -2,6 +2,7 @@ import UI.MenuUI;
 import UI.ReservationUI;
 
 import java.sql.SQLOutput;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Application {
@@ -9,16 +10,16 @@ public class Application {
     private Staff current_staff = null;
     public static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Restaurant.loadState();//load restaurant data
         //login
-        showOptions();
+            showOptions();
 
         Restaurant.saveState();
         System.exit(0);
     }
 
-    public static void showOptions() {
+    public static void showOptions() throws ParseException {
         int flag  = 1;
         while (flag == 1) {
             System.out.println("\t==STAFF INTERFACE==");
