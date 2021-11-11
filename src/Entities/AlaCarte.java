@@ -1,6 +1,9 @@
+package Entities;
 
+import Entities.Category;
+import Entities.MenuItems;
 
-public class AlaCarte extends MenuItems{
+public class AlaCarte extends MenuItems {
 
 	private double Price;
 	
@@ -16,9 +19,9 @@ public class AlaCarte extends MenuItems{
 	public void setPrice(double price) {
 		this.Price = price;
 	}
-	//print AlaCarte attributes
+	//print Entities.AlaCarte attributes
 	public String toString() {
-		String print = ("Category: " + this.getCategory() +
+		String print = ("Entities.Category: " + this.getCategory() +
 						"Name: " + this.getName() +
 						"Description: "+ this.getDescription() +
 						"Price: " + this.getPrice());

@@ -1,4 +1,8 @@
-public class orderItems{
+package Entities;
+
+import java.io.Serializable;
+
+public class orderItems implements Serializable {
     private MenuItems orderItem;
     private double chargedPrice;
 
