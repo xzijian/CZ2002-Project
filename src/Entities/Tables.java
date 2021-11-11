@@ -16,7 +16,7 @@ public class Tables {
         this.availableTablesOfSix = numOfTablesOfSix;
         this.availableTablesOfTen = numOfTablesOfTen;
 
-        this.reservedTable = new Reservation[numOfTablesOfSix + numOfTablesOfTen +numOfTablesOfTwo];
+        reservedTable = new Reservation[numOfTablesOfSix + numOfTablesOfTen +numOfTablesOfTwo];
 
         for (Reservation table: reservedTable) {
             table = null; // Entities.Tables without reservations are set to null
@@ -59,4 +59,24 @@ public class Tables {
     public static void setReservedTable(Reservation r) {
         reservedTable[r.getTableNum()] = r;
     }
+
+    public static void printReservedTables() {
+        for (Reservation r : reservedTable) {
+            if (r != null) {
+                r.printReservationDetails();
+            }
+        }
+    }
+
+    public static void RemoveReservationByCustomer(Customer cust) {
+        for (Reservation r : reservedTable) {
+            if (r.getCust().equals(cust)) {
+                r = null;
+                break;
+            }
+        }
+        System.out.println("Reservation successfully removed.\nRemaining Reservations: ");
+        printReservedTables();
+    }
+
 }
