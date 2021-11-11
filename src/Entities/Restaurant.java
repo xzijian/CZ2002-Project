@@ -26,6 +26,7 @@ public class Restaurant {
 	public static ArrayList<Customer> customersList ;
 	public static ArrayList<Order> orders ;
 	public static ArrayList<Order> completedOrders ;
+	public static Tables restaurantTables;
 
 
 	public static void saveState() {
@@ -43,7 +44,8 @@ public class Restaurant {
 				foodMenu,
 				customersList,
 				orders,
-				completedOrders};
+				completedOrders,
+				restaurantTables};
 
 		Path 				saveFileName 	= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileOutputStream   	file 			= null;
@@ -94,6 +96,7 @@ public class Restaurant {
 				foodMenu = (ArrayList<MenuItems>) restaurantState[2];
 				orders = (ArrayList<Order>) restaurantState[3];
 				completedOrders = (ArrayList<Order>) restaurantState[4];
+				restaurantTables = (Tables) restaurantState[5];
 			}
 
 			in.close();
@@ -119,6 +122,7 @@ public class Restaurant {
 	public static void initRestaurant() {
 		initStaff();
 		initFoodMenu();
+		initTables();
 	}
 
 	public static void initStaff(){
@@ -133,6 +137,10 @@ public class Restaurant {
 		AlaCarte AC1 = new AlaCarte("NSFC TAIWAN", "BEST", Category.MAINCOURSE, 0.99);
 		menuItems.add((MenuItems) AC1);
 		Restaurant.foodMenu = menuItems;
+	}
+
+	public static void initTables() {
+		Restaurant.restaurantTables = new Tables(6,3,2);
 	}
 
 	public void addStaff(String name, boolean gender, int id, String jobTitle) {
@@ -163,12 +171,12 @@ public class Restaurant {
 		for (Customer customer :  Restaurant.customersList) {
 			if (customer.getCustomerContact().equals(number))
 			{
-				System.out.println("Entities.Customer found.");
+				System.out.println("Customer found.");
 				return customer;
 			}
 
 		}
-		System.out.println("Entities.Customer does not exist");
+		System.out.println("Customer does not exist");
 		return null;
 	}
 }	
