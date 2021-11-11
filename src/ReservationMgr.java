@@ -9,7 +9,6 @@ public class ReservationMgr {
     public void createReservation(Date date, Date time , int pax, int tableNum, Customer customer) {
         Reservation reservation = new Reservation(date, time , pax, tableNum, customer);
 
-
     }
 
 }
