@@ -1,6 +1,8 @@
 import Entities.Restaurant;
 import Entities.Staff;
+import Managers.InvoiceMgr;
 import UI.MenuUI;
+import Managers.OrderMgr;
 import UI.ReservationUI;
 
 import java.text.ParseException;
@@ -10,7 +12,6 @@ public class Application {
 
     private Staff current_staff = null;
     public static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) throws ParseException {
         Restaurant.loadState();//load restaurant data
         //login
@@ -27,7 +28,8 @@ public class Application {
             System.out.println("1.Access Reservations");
             System.out.println("2.Update Orders");
             System.out.println("3.Edit Menu");
-            System.out.println("4.Logout");
+            System.out.println("4.Print Sales Revenue");
+            System.out.println("5.Logout");
             System.out.print("Enter option: ");
 
             int choice = sc.nextInt();
@@ -37,11 +39,15 @@ public class Application {
                     ReservationUI.reservationChoice();
                     continue;
                 case 2:
+                    OrderMgr.editPendingOrder();
                     continue;
                 case 3:
                     MenuUI.MenuUIOptions();
                     continue;
                 case 4:
+                    InvoiceMgr.printSalesRevenue();
+                    continue;
+                case 5:
                     flag = 0;
                     break;
             }

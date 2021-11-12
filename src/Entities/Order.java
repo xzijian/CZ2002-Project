@@ -19,13 +19,13 @@ import java.util.Scanner;
 public class Order implements Serializable {
     private Staff staff;
     private Reservation reservation;
-    private ArrayList<orderItems> itemOrdered;
+    private ArrayList<OrderItems> itemOrdered;
     private Invoice invoice;
     private Date dateTime;
     private int OrderID;
 
     public Order(Staff createdBy, Reservation fromReservation){
-        this.itemOrdered = new ArrayList<orderItems>();
+        this.itemOrdered = new ArrayList<OrderItems>();
         this.staff = createdBy;
         this.reservation = fromReservation;
         this.dateTime = Calendar.getInstance().getTime();
@@ -33,17 +33,17 @@ public class Order implements Serializable {
         this.OrderID = Calendar.getInstance().hashCode();
     }
 
-    public Invoice getInvoice(Invoice invoice) {return this.invoice;}
+    public Invoice getInvoice() {return this.invoice;}
     public Reservation getFromReservation(){return this.reservation;}
     public Date getDateTime() {return dateTime;}
     public int getOrderID(){ return this.OrderID; }
-    public ArrayList<orderItems> getOrderLineItems(){return this.itemOrdered;}
+    public ArrayList<OrderItems> getOrderItems(){return this.itemOrdered;}
 
     public void OrderItems(){
         if(this.invoice != null) return;
         int choice;
         int index = 0;
-        orderItems itemOrdering;
+        OrderItems itemOrdering;
 
         Scanner sc = new Scanner(System.in);
         ArrayList<MenuItems> foodMenu = Restaurant.foodMenu;
@@ -54,13 +54,32 @@ public class Order implements Serializable {
 
         try{
             String orderItemAdded = foodMenu.get(choice).getName();
-            itemOrdering = new orderItems((foodMenu.get(choice)));
+            itemOrdering = new OrderItems((foodMenu.get(choice)));
             this.itemOrdered.add(itemOrdering);
             System.out.println(orderItemAdded + " added to order.");
         }catch(IndexOutOfBoundsException e){
             System.out.println("Error! Invalid index entered!");
         }
     }
+
+    public void RemoveItems(){
+        if(this.invoice != null) return;
+        int choice;
+        int index = 0;
+
+        Scanner sc = new Scanner(System.in);
+        for (OrderItems orderItems : itemOrdered)
+            System.out.println(index++ + ": " + orderItems.getMenuItem().getName());
+        System.out.println("Enter your choice : ");
+        choice = sc.nextInt();
+        try{
+            this.itemOrdered.remove(choice);
+            System.out.println("Item removed from order.");
+            }catch(IndexOutOfBoundsException e){
+                System.out.println("Invalid index provided");
+        }
+    }
+
     public void createInvoice(){
         if(this.invoice != null) return;
         this.invoice = new Invoice(this);
@@ -69,7 +88,7 @@ public class Order implements Serializable {
 
     public double calculatePrice(){
         double price = 0;
-        for(orderItems o : this.itemOrdered)
+        for(OrderItems o : this.itemOrdered)
             price += o.getMenuItem().getPrice();
         return price;
     }
