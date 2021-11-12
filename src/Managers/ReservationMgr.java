@@ -1,17 +1,20 @@
 package Managers;
 
-import Entities.*;
+import Entities.Customer;
+import Entities.Reservation;
+import Entities.Restaurant;
+import Entities.Tables;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class ReservationMgr {
+
     public static void createReservation(Date datetime , int pax, int tableNum, Customer customer) {
         Reservation reservation = new Reservation(datetime , pax, tableNum, customer, false);
         ReservationMgr.setReservedTable(reservation);
@@ -20,18 +23,10 @@ public class ReservationMgr {
         printReservedTables();
     }
 
-    public static void vacateReservation(Order order){
-        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
-            Reservation r = Restaurant.RestaurantTables.get(i);
-            if (r != null) {
-                if (r.getTableNum() == order.getFromReservation().getTableNum()) {
-                    Restaurant.RestaurantTables.set(i, null);
-                }
-            }
-        }
-    }
-    public static void removeReservation(Customer cust) {
+    public static void removeReservation() {
         Scanner s = new Scanner(System.in);
+        System.out.println("Provide customer's number: ");
+        Customer cust = CustomerMgr.getCustomer(s.nextLine());
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             Reservation r = Restaurant.RestaurantTables.get(i);
             if (r != null) {
@@ -49,17 +44,10 @@ public class ReservationMgr {
                 }
             }
         }
+        System.out.println("Customer does not have any reservation.");
     }
 
     public static void printReservedTables() {
-        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
-            if (Restaurant.RestaurantTables.get(i) != null && Restaurant.RestaurantTables.get(i).isArrived() == false) {
-                Restaurant.RestaurantTables.get(i).printReservationDetails();
-            }
-        }
-    }
-
-    public static void printArrivedTables() {
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             if (Restaurant.RestaurantTables.get(i) != null) {
                 Restaurant.RestaurantTables.get(i).printReservationDetails();
@@ -98,8 +86,8 @@ public class ReservationMgr {
             if (r != null && !r.isArrived()) {
             Date reservationTime = r.getReservationDT();
             long diffInMillies = (reservationTime.getTime() - instant.toInstant().toEpochMilli());
-            long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
-            if (diff < -30) {
+            long diffinMinutes = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
+            if (diffinMinutes < -30) {
                 System.out.println("Reservation by " + r.getCust().getCustomerName() + " at " + r.getReservationDT().toString() + " has expired.");
                 Restaurant.RestaurantTables.set(i, null);
                 }
@@ -110,6 +98,15 @@ public class ReservationMgr {
     public static Reservation reservationArrived(int tableNum) {
         Restaurant.RestaurantTables.get(tableNum).setArrived();
         return Restaurant.RestaurantTables.get(tableNum);
+    }
+
+    public static void showTableAvailability() {
+        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
+            Reservation r = Restaurant.RestaurantTables.get(i);
+            if (r == null) {
+                System.out.println("Table " + (i + 1) +" is available");
+            }
+        }
     }
 
 

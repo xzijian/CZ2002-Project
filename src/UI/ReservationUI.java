@@ -28,25 +28,30 @@ public class ReservationUI {
             System.out.println("1. Make Reservation");
             System.out.println("2. List Reservation Availability");
 			System.out.println("3. Remove Reservation");
-			System.out.println("4. Back");
+			System.out.println("4. Show Table Availability");
 
         	System.out.println();
         	
         	choice = sc.nextInt();
 
         	switch(choice) {
-        	case 1:
-				createReservationUI();
-        		break;
-        	case 2:
-				listReservationsUI();
-        		break;
-        	case 3:
-				removeReservationUI();
-        	default:
-        		System.out.println("Invalid input please try again.");
+        		case 1:
+					createReservationUI();
+        			break;
+        		case 2:
+					listReservationsUI();
+        			break;
+        		case 3:
+					removeReservationUI();
+					break;
+				case 4:
+					showAvailabilityUI();
+					break;
+				case 5:
+        		default:
+        			System.out.println("Exiting Reservation UI...");
         	}
-        } while (choice < 4);
+        } while (choice < 5);
 	}
 
 
@@ -80,15 +85,13 @@ public class ReservationUI {
 	public static void listReservationsUI() {ReservationMgr.printArrivedTables();}
 
 	public static void removeReservationUI() {
-		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Provide customer's number: ");
-		Customer cust = CustomerMgr.getCustomer(scanner.nextLine());
-		if (cust != null) {
-			ReservationMgr.removeReservation(cust);
-		} else {
-			System.out.println("Customer does not have any reservations.");
-		}
+		ReservationMgr.removeReservation();
 
+
+	}
+
+	public static void showAvailabilityUI() {
+		ReservationMgr.showTableAvailability();
 	}
 }
