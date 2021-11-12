@@ -25,7 +25,6 @@ public class CustomerMgr {
 		for (Customer customer :  Restaurant.customersList) {
 			if (customer.getCustomerContact().equals(number))
 			{
-				System.out.println("Customer found.");
 				return customer;
 			}
 

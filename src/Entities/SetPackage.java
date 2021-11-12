@@ -3,16 +3,17 @@ package Entities;
 import Entities.AlaCarte;
 import Entities.Category;
 import Entities.MenuItems;
+import Managers.MenuMgr;
 
 import java.util.ArrayList;
 
 public class SetPackage extends MenuItems {
-	private ArrayList<AlaCarte> set = new ArrayList<AlaCarte>();
+	private ArrayList<MenuItems> set = new ArrayList<MenuItems>();
 	private double discountRate;
 	
-	public SetPackage(String name, String desc, double price) {
+	public SetPackage(String name, String desc) {
 		super(name, desc);
-		this.Price = price;
+		this.Price = 0;
 		this.discountRate = 1;
 	}
 	public double getDiscountRate() {
@@ -22,7 +23,7 @@ public class SetPackage extends MenuItems {
 		this.discountRate = rate;
 		this.Price = this.getPrice() * rate;
 	}
-	public ArrayList<AlaCarte> getSet() {
+	public ArrayList<MenuItems> getSet() {
 		return this.set;
 	}
 	//ID should start from 0
@@ -37,7 +38,7 @@ public class SetPackage extends MenuItems {
 		else {
 			while(true) {
 				try {
-					AlaCarte alacarte = this.set.get(itemID);
+					MenuItems alacarte = this.set.get(itemID);
 					set.remove(itemID);
 					return;
 				}catch(IndexOutOfBoundsException e) {
@@ -49,7 +50,7 @@ public class SetPackage extends MenuItems {
 	}
 	public double getDiscountedPrice() {
 		double sum = 0.0;
-		for (AlaCarte alacarte: set) {
+		for (MenuItems alacarte: set) {
 			sum = alacarte.getPrice();
 		}
 		return sum * this.getDiscountRate();
@@ -65,7 +66,7 @@ public class SetPackage extends MenuItems {
 	//print out items in the set
 	public void printFoodinSet() {
 		System.out.println("Set name: " + this.getName());
-		for (AlaCarte alacarte: set) {
+		for (MenuItems alacarte: set) {
 			System.out.println("ID: " + this.getSet().indexOf(alacarte) + 
 						       "\nName: " + alacarte.getName() +
 							   "\nDescription: " + alacarte.getDescription() +

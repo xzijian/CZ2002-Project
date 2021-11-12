@@ -1,5 +1,6 @@
 package Managers;
 
+import Entities.Order;
 import Entities.Customer;
 import Entities.Reservation;
 import Entities.Restaurant;
@@ -23,6 +24,16 @@ public class ReservationMgr {
         printReservedTables();
     }
 
+    public static void vacateReservation(Order order){
+        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
+            Reservation r = Restaurant.RestaurantTables.get(i);
+            if (r != null) {
+                if (r.getTableNum() == order.getFromReservation().getTableNum()) {
+                    Restaurant.RestaurantTables.set(i, null);
+                }
+            }
+        }
+    }
     public static void removeReservation() {
         Scanner s = new Scanner(System.in);
         System.out.println("Provide customer's number: ");
@@ -48,6 +59,14 @@ public class ReservationMgr {
     }
 
     public static void printReservedTables() {
+        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
+            if (Restaurant.RestaurantTables.get(i) != null && Restaurant.RestaurantTables.get(i).isArrived() == false) {
+                Restaurant.RestaurantTables.get(i).printReservationDetails();
+            }
+        }
+    }
+
+    public static void printArrivedTables() {
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             if (Restaurant.RestaurantTables.get(i) != null) {
                 Restaurant.RestaurantTables.get(i).printReservationDetails();
