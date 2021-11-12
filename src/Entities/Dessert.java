@@ -2,7 +2,7 @@ package Entities;
 
 
 import Entities.MenuItems;
-public abstract class Dessert extends AlaCarte {
+public class Dessert extends AlaCarte {
 	
 	
 
