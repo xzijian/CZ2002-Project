@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class ReservationMgr {
 
     public static void createReservation(Date datetime , int pax, int tableNum, Customer customer) {
-        Reservation reservation = new Reservation(datetime , pax, tableNum, customer);
+        Reservation reservation = new Reservation(datetime , pax, tableNum, customer, false);
         ReservationMgr.setReservedTable(reservation);
 
         System.out.println("Reservation Successful. Current Reservations");
@@ -80,15 +80,23 @@ public class ReservationMgr {
         ZonedDateTime instant = ZonedDateTime.now();
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             Reservation r = Restaurant.RestaurantTables.get(i);
-            if (r == null) {continue;}
+            if (r != null && !r.isArrived()) {
             Date reservationTime = r.getReservationDT();
             long diffInMillies = (reservationTime.getTime() - instant.toInstant().toEpochMilli());
             long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
             if (diff < -30) {
                 System.out.println("Reservation by " + r.getCust().getCustomerName() + " at " + r.getReservationDT().toString() + " has expired.");
                 Restaurant.RestaurantTables.set(i, null);
+                }
             }
         }
     }
+
+    public static Reservation reservationArrived(int tableNum) {
+        Restaurant.RestaurantTables.get(tableNum).setArrived();
+        return Restaurant.RestaurantTables.get(tableNum);
+    }
+
+
 
 }
