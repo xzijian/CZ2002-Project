@@ -1,6 +1,6 @@
 package Entities;
 
-import Entities.Category;
+
 import Entities.MenuItems;
 public abstract class MainCourse extends AlaCarte {
 
