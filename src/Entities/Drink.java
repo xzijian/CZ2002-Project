@@ -1,8 +1,7 @@
 package Entities;
 
-import Entities.Category;
 import Entities.MenuItems;
-public abstract class Drink extends AlaCarte{
+public class Drink extends AlaCarte{
 
 	public Drink(String name, String desc, double price) {
 		super(name, desc, price);
