@@ -1,5 +1,7 @@
-package entity;
+package Entities;
 
+import Entities.Category;
+import Entities.MenuItems;
 public abstract class Dessert extends AlaCarte {
 	
 	
