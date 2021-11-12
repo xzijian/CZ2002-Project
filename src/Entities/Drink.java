@@ -11,23 +11,23 @@ public class Drink extends AlaCarte{
 		return this.getName();
 	}
 	
-	public void setDessertName(String name) {
+	public void setDrinkName(String name) {
 		this.setName(name);
 	}
 	
-	public String getDessertDesc() {
+	public String getDrinkDesc() {
 		return this.getDescription();
 	}
 	
-	public void setDessertDesc(String desc) {
+	public void setDrinkDesc(String desc) {
 		this.setDescription(desc);
 	}
 	
-	public double getDessertPrice() {
+	public double getDrinkPrice() {
 		return this.getPrice();
 	}
 	
-	public void setDessertPrice(double price) {
+	public void setDrinkPrice(double price) {
 		this.setPrice(price);
 	}
 }
