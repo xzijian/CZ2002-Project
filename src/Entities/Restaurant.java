@@ -1,4 +1,4 @@
-package Entities;
+package restaurant;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,23 +12,20 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Restaurant {
-
+	
 	private String openingHours;
 	private boolean isOpen;
-	//ArrayList<Entities.Staff> employeeStaff = new ArrayList<Entities.Staff>();
-
-
-
+	//ArrayList<Staff> employeeStaff = new ArrayList<Staff>();
+	
+	
+	
 	public static final Path 	DATAPATH 					= Paths.get(System.getProperty("user.dir"), "data");
-	public static final String 	RESTAURANT_FILE_NAME		= "restaurantSaveLoad.dat";
+	public static final String 	RESTAURANT_FILE_NAME		= "restaurantSaveLoad.dat";	
 	public static ArrayList<Staff> employeeStaff;
 	public static ArrayList<MenuItems> foodMenu;
 	public static ArrayList<Customer> customersList ;
-	public static ArrayList<Order> orders ;
-	public static ArrayList<Order> completedOrders ;
-	public static Tables restaurantTables;
-
-
+	
+	
 	public static void saveState() {
 		if(!Files.exists(DATAPATH)){
 			System.out.println("Data folder not found!");
@@ -37,94 +34,84 @@ public class Restaurant {
 				System.out.println("Directory " + DATAPATH + " created...");
 			}
 		}
-
+		
 		Object[] restaurantState 	= {
 				employeeStaff,
-				customersList,
-				foodMenu,
-				customersList,
-				orders,
-				completedOrders,
-				restaurantTables};
-
+				customersList};
+		
 		Path 				saveFileName 	= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileOutputStream   	file 			= null;
 		ObjectOutputStream 	out				= null;
-
+		
 		// Serialization 
-		try
-		{
-			//Saving of object in a file
-			file = new FileOutputStream(saveFileName.toString());
-			out = new ObjectOutputStream(file);
-
-			// Method for serialization of object
-			out.writeObject(restaurantState);
+        try
+        {   
+            //Saving of object in a file
+            file = new FileOutputStream(saveFileName.toString());
+            out = new ObjectOutputStream(file);
+              
+            // Method for serialization of object
+            out.writeObject(restaurantState);
 			System.out.println("State saved");
-
-			out.close();
-			file.close();
-
-			System.out.println("Object has been serialized");
-
-		}
-
-		catch(IOException ex)
-		{
-			System.out.println("IOException is caught");
-		}
+              
+            out.close();
+            file.close();
+              
+            System.out.println("Object has been serialized");
+  
+        }
+          
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
 	}
-
+	
 	public static void loadState() {
 		Object[] restaurantState = null;
 		Path saveData 				= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileInputStream file 		= null;
 		ObjectInputStream in 		= null;
-
+		
 		// Deserialization
-		try
-		{
-			// Reading the object from a file
-			file = new FileInputStream(saveData.toString());
-			in = new ObjectInputStream(file);
-
-			// Method for deserialization of object
-			restaurantState = (Object[])in.readObject();
-			if(restaurantState != null){
+        try
+        {   
+            // Reading the object from a file
+            file = new FileInputStream(saveData.toString());
+            in = new ObjectInputStream(file);
+              
+            // Method for deserialization of object
+            restaurantState = (Object[])in.readObject();
+            if(restaurantState != null){
 				employeeStaff = (ArrayList<Staff>) restaurantState[0];
 				customersList = (ArrayList<Customer>) restaurantState[1];
-				foodMenu = (ArrayList<MenuItems>) restaurantState[2];
-				orders = (ArrayList<Order>) restaurantState[3];
-				completedOrders = (ArrayList<Order>) restaurantState[4];
-				restaurantTables = (Tables) restaurantState[5];
 			}
-
-			in.close();
-			file.close();
-
-			System.out.println("Object has been deserialized ");
-
-		}
-
-		catch(IOException ex)
-		{
-			System.out.println("IOException is caught lolol");
-			initRestaurant();
-		}
-
-		catch(ClassNotFoundException ex)
-		{
-			System.out.println("ClassNotFoundException is caught");
-			initRestaurant();
-		}
+              
+            in.close();
+            file.close();
+              
+            System.out.println("Object has been deserialized ");
+            
+        }
+          
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught lolol");
+            initRestaurant();
+        }
+          
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+            initRestaurant();
+        }
 	}
-
+	
 	public static void initRestaurant() {
 		initStaff();
-		initFoodMenu();
-		initTables();
+		initFoodMenu();	
 	}
-
+	
 	public static void initStaff(){
 		ArrayList<Staff> staffs = new ArrayList<Staff>();
 		staffs.add(new Staff("John", true, 1, "Dog"));
@@ -138,16 +125,12 @@ public class Restaurant {
 		menuItems.add((MenuItems) AC1);
 		Restaurant.foodMenu = menuItems;
 	}
-
-	public static void initTables() {
-		Restaurant.restaurantTables = new Tables(6,3,2);
-	}
-
+	
 	public void addStaff(String name, boolean gender, int id, String jobTitle) {
 		Staff staffTemplate = new Staff(name , gender, id, jobTitle);
 		employeeStaff.add(staffTemplate);
 	}
-
+	
 	public Staff getStaff(int id) {
 		return employeeStaff.get(id-1);
 	}
@@ -159,7 +142,7 @@ public class Restaurant {
 		for (Customer customer : Restaurant.customersList) {
 			if (number.equals(customer.getCustomerContact()))
 			{
-				System.out.println("Entities.Customer exists");
+				System.out.println("Customer exists");
 				exist = 1;
 				return exist;
 			}
@@ -174,9 +157,27 @@ public class Restaurant {
 				System.out.println("Customer found.");
 				return customer;
 			}
-
+				
 		}
 		System.out.println("Customer does not exist");
-		return null;
+		return null;		
+	}
+	//remove customer from the customerArrayList.
+	public static void removeCustomer(String number) {
+		int i = 0;
+		int removeC = 0;
+		for (Customer customer : Restaurant.customersList) {
+			if (customer.getCustomerContact().equals(number))
+			{
+				Restaurant.customersList.remove(i);
+				System.out.println("Customer: " + customer.getCustomerName() + " is removed from database.");
+				removeC = 1;
+				break;
+			}
+			i++;
+		}
+		if (removeC == 0) {
+			System.out.println("Customer not found.");
+		}
 	}
 }	
