@@ -64,9 +64,9 @@ public class ReservationMgr {
             Reservation r = Restaurant.RestaurantTables.get(i);
             if (r == null) {continue;}
             Date reservationTime = r.getReservationDT();
-            long diffInMillies = Math.abs(reservationTime.getTime() - instant.toInstant().toEpochMilli());
+            long diffInMillies = (reservationTime.getTime() - instant.toInstant().toEpochMilli());
             long diff = TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS);
-            if (diff > 30) {
+            if (diff < -30) {
                 System.out.println("Reservation by " + r.getCust().getCustomerName() + " at " + r.getReservationDT().toString() + " has expired.");
                 Restaurant.RestaurantTables.set(i, null);
             }
