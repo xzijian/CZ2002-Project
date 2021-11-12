@@ -22,6 +22,9 @@ public abstract class AlaCarte extends MenuItems {
 		this.Price = price;
 	}
 	
+	public void Category() {
+		System.out.println("Category: ");
+	}
 	
 	
 	//print AlaCarte attributes

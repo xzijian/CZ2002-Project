@@ -9,12 +9,14 @@ public class Reservation implements Serializable {
     private int tableNum;
     private Customer cust;
     private int reservationID;
+    private boolean arrived;
 
-    public Reservation(Date datetime, int numOfPax, int tableNum, Customer cust) {
+    public Reservation(Date datetime, int numOfPax, int tableNum, Customer cust, boolean arrived) {
         this.datetime = datetime;
         this.cust = cust;
         this.numOfPax = numOfPax;
         this.tableNum = tableNum;
+        this.arrived = false;
         // generate random reservation id
     }
 
@@ -30,5 +32,13 @@ public class Reservation implements Serializable {
 
     public Date getReservationDT() {
         return this.datetime;
+    }
+
+    public void setArrived() {
+        this.arrived = true;
+    }
+
+    public boolean isArrived() {
+        return this.arrived;
     }
 }
