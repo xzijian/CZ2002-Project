@@ -1,5 +1,7 @@
-package entity;
+package Entities;
 
+import Entities.Category;
+import Entities.MenuItems;
 public abstract class MainCourse extends AlaCarte {
 
 	public MainCourse(String name, String desc, double price) {
