@@ -30,6 +30,7 @@ public class Restaurant {
 	public static ArrayList<Order> completedOrders;
 	public static ArrayList<MenuItems> foodMenu;
 	public static ArrayList<Customer> customersList;
+	public static ArrayList<Invoice> invoices ;
 	
 	
 	public static void saveState() {
@@ -47,7 +48,8 @@ public class Restaurant {
 				orders,
 				completedOrders,
 				foodMenu,
-				customersList};
+				customersList,
+				invoices};
 		
 		Path 				saveFileName 	= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileOutputStream   	file 			= null;
@@ -98,6 +100,7 @@ public class Restaurant {
 				completedOrders = (ArrayList<Order>) restaurantState[3];
 				foodMenu = (ArrayList<MenuItems>) restaurantState[4];
 				customersList = (ArrayList<Customer>) restaurantState[5];
+				invoices = (ArrayList<Invoice>) restaurantState[6];
 			}
               
             in.close();
@@ -123,6 +126,9 @@ public class Restaurant {
 	public static void initRestaurant() {
 		initStaff();
 		initTables();
+		initInvoices();
+		initOrders();
+		initCompletedOrders();
 	}
 	
 	public static void initTables() {
@@ -136,7 +142,22 @@ public class Restaurant {
 
 		Restaurant.employeeStaff = staffs;
 	}
-	
+
+	public static void initOrders(){
+		ArrayList<Order> order = new ArrayList<Order>();
+		Restaurant.orders = order;
+	}
+
+	public static void initCompletedOrders(){
+		ArrayList<Order> completedorders = new ArrayList<Order>();
+		Restaurant.completedOrders = completedorders;
+	}
+
+	public static void initInvoices(){
+		ArrayList<Invoice> invoices1 = new ArrayList<Invoice>();
+		Restaurant.invoices = invoices1;
+	}
+
 	/*public Restaurant() {
 		openingHours = "12pm-12am";
 		isOpen = true;
