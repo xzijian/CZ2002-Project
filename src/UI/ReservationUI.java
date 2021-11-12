@@ -77,9 +77,7 @@ public class ReservationUI {
 
 	}
 
-	public static void listReservationsUI() {
-		ReservationMgr.printReservedTables();
-	}
+	public static void listReservationsUI() {ReservationMgr.printArrivedTables();}
 
 	public static void removeReservationUI() {
 		Scanner scanner = new Scanner(System.in);

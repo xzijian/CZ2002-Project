@@ -1,11 +1,12 @@
 package Managers;
 
+import Entities.MenuItems;
 import Entities.Order;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import Entities.Restaurant;
-import UI.OrderUI;
+import Managers.ReservationMgr;
 
 /**
  * UI.OrderUI class represents an order
@@ -24,7 +25,7 @@ public class OrderMgr {
             System.out.println("\nSelect a choice: ");
             System.out.println("(1) Show order details");
             System.out.println("(2) Add order items");
-            System.out.println("(3) Remove order line item");
+            System.out.println("(3) Remove order item");
             System.out.println("(4) Print invoice");
             System.out.println("(5) Back");
             System.out.println();
@@ -50,7 +51,12 @@ public class OrderMgr {
     }
     public static void orderDetails(Order order){
         if (order.getOrderItems().size() == 0) System.out.println("No order items in order");
-        else System.out.println(order);
+        else {
+            int index = 0;
+            for (MenuItems mi : order.getOrderItems()){
+                System.out.println("(" + index++ +")" + mi.getName());
+            }
+        }
     }
 
     public static void takeOrder(Order order){
@@ -72,6 +78,7 @@ public class OrderMgr {
             order.createInvoice();
             Restaurant.invoices.add(order.getInvoice());
             completeOrder(order);
+            ReservationMgr.vacateReservation(order);
         }
     }
 

@@ -38,10 +38,10 @@ public class Application {
 
             switch (choice) {
                 case 1:
-                    ReservationUI.reservationChoice();
+                    ReservationUI.reservationChoices();
                     continue;
                 case 2:
-                    OrderUI.PendingOrder(current_staff);
+                    OrderUI.orderChoices(current_staff);
                     continue;
                 case 3:
                     MenuUI.MenuUIOptions();

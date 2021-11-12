@@ -9,9 +9,10 @@ public class AlaCarte extends MenuItems {
 	private double Price;
 	private Category categoryType;
 	
-	public AlaCarte(String name, String desc, double price) {
+	public AlaCarte(String name, String desc, double price, String category) {
 		super(name, desc);
 		this.Price = price;
+		this.setCategory(category);
 	}
 	@Override
 	public double getPrice() {

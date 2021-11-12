@@ -1,20 +1,17 @@
 package Managers;
 
-import Entities.Customer;
-import Entities.Reservation;
-import Entities.Restaurant;
-import Entities.Tables;
+import Entities.*;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class ReservationMgr {
-
     public static void createReservation(Date datetime , int pax, int tableNum, Customer customer) {
         Reservation reservation = new Reservation(datetime , pax, tableNum, customer, false);
         ReservationMgr.setReservedTable(reservation);
@@ -23,6 +20,16 @@ public class ReservationMgr {
         printReservedTables();
     }
 
+    public static void vacateReservation(Order order){
+        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
+            Reservation r = Restaurant.RestaurantTables.get(i);
+            if (r != null) {
+                if (r.getTableNum() == order.getFromReservation().getTableNum()) {
+                    Restaurant.RestaurantTables.set(i, null);
+                }
+            }
+        }
+    }
     public static void removeReservation(Customer cust) {
         Scanner s = new Scanner(System.in);
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {

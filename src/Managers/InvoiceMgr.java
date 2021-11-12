@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class InvoiceMgr {
     private static ArrayList<Invoice> invoices = Restaurant.invoices;
-    private static ArrayList<MenuItems> foodMenu = Restaurant.foodMenu;
 
     public static void printSalesRevenue(){
         int day1, month1, year1, day2, month2, year2;

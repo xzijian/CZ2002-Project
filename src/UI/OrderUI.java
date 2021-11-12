@@ -23,14 +23,13 @@ public class OrderUI {
     private static ArrayList<Order> orders = Restaurant.orders;
     private static Scanner sc = new Scanner(System.in);
 
-    public static void PendingOrder(Staff currentStaff){
+    public static void orderChoices(Staff currentStaff){
         int choice;
         do {
             System.out.println("\nSelect a choice: ");
             System.out.println("(1) Take a new order");
             System.out.println("(2) Edit Order");
-            System.out.println("(3) Print invoice");
-            System.out.println("(4) Back");
+            System.out.println("(3) Back");
             System.out.println();
             System.out.println("Enter your choice : ");
             choice = sc.nextInt();
@@ -73,13 +72,24 @@ public class OrderUI {
 
     public static void takeOrder(Staff currentStaff){
         int choice = 0;
-        ReservationMgr.printReservedTables();
-        System.out.println("Enter the table number of your choice: ");
-        choice = sc.nextInt();
-        Reservation thisRV = ReservationMgr.reservationArrived(choice);
-        Order newOrder = new Order(currentStaff, thisRV);
-        orders.add(newOrder);
-        OrderMgr.menuShowOrder(newOrder);
+        int counter = 0;
+        for (int i = 0; i< 11; i++){
+            if (Restaurant.RestaurantTables.get(i) == null){
+                counter++;
+            }
+        }
+        if (counter != 11) {
+            ReservationMgr.printReservedTables();
+            System.out.println("Enter the table number of your choice: ");
+            choice = sc.nextInt();
+            Reservation thisRV = ReservationMgr.reservationArrived(choice);
+            Order newOrder = new Order(currentStaff, thisRV);
+            orders.add(newOrder);
+            OrderMgr.menuShowOrder(newOrder);
+        }
+        else {
+            System.out.println("No reservation!");
+        }
     }
 
 }
