@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import Entities.Staff;
 import Entities.Tables;
+import Entities.AlaCarte;
 
 public class Restaurant {
 	
@@ -129,8 +130,19 @@ public class Restaurant {
 		initInvoices();
 		initOrders();
 		initCompletedOrders();
+		initFoodMenu();
 	}
-	
+
+	public static void initFoodMenu(){
+		ArrayList<MenuItems> menu = new ArrayList<MenuItems>();
+		Drink drink = new Drink("Coke", "Coke", 2.50);
+		Drink drink1 = new Drink("Orange Juice", "'Orange", 5.00);
+		Drink drink2 = new Drink("Root Beer", "Root", 10.00);
+		menu.add(drink);
+		menu.add(drink1);
+		menu.add(drink2);
+		Restaurant.foodMenu = menu;
+	}
 	public static void initTables() {
 		Tables tables = new Tables(6, 3, 2);
 		Restaurant.RestaurantTables = tables;

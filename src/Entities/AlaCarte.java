@@ -3,7 +3,7 @@ package Entities;
 
 import Entities.MenuItems;
 
-public class AlaCarte extends MenuItems {
+public abstract class AlaCarte extends MenuItems {
 
 	private double Price;
 

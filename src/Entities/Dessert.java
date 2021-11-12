@@ -2,10 +2,7 @@ package Entities;
 
 
 import Entities.MenuItems;
-public abstract class Dessert extends AlaCarte {
-	
-	
-
+public class Dessert extends AlaCarte {
 	public Dessert(String name, String desc, double price) {
 		super(name, desc, price);
 	}
@@ -33,6 +30,4 @@ public abstract class Dessert extends AlaCarte {
 	public void setDessertPrice(double price) {
 		this.setPrice(price);
 	}
-
-
 }
