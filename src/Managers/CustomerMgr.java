@@ -56,10 +56,14 @@ public class CustomerMgr {
 		String name;
 		boolean membership= false;
 		Scanner sc = new Scanner(System.in);
+
 		System.out.println("Enter customer name:");
+
 		name = sc.next();
 		Customer newCustomer = new Customer(name, number, membership);
 		Restaurant.customersList.add(newCustomer);
 		System.out.println("Customer Added to Database.");
 	}
+
 }
+

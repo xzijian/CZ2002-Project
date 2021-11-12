@@ -2,17 +2,17 @@ package Entities;
 
 import java.io.Serializable;
 
-public class orderItems implements Serializable {
+public class OrderItems implements Serializable {
     private MenuItems orderItem;
-    private double chargedPrice;
+    private double price;
 
-    public orderItems(MenuItems orderItem){
+    public OrderItems(MenuItems orderItem){
         this.orderItem = orderItem;
-        this.chargedPrice = orderItem.getPrice();
+        this.price = orderItem.getPrice();
     }
 
     public MenuItems getMenuItem(){ return this.orderItem; }
-    public double getChargedPrice(){ return this.chargedPrice; }
+    public double getPrice(){ return this.price; }
     public String toString(){ return this.getMenuItem().getName(); }
 
 }

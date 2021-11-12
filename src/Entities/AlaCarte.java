@@ -1,16 +1,18 @@
 package Entities;
 
-import Entities.Category;
+
 import Entities.MenuItems;
 
-public class AlaCarte extends MenuItems {
+public abstract class AlaCarte extends MenuItems {
 
 	private double Price;
+
 	
-	public AlaCarte(String name, String desc, Category type, double price) {
-		super(name, desc, type);
+	public AlaCarte(String name, String desc, double price) {
+		super(name, desc);
 		this.Price = price;
 	}
+	
 	@Override
 	public double getPrice() {
 		return this.Price;
@@ -19,10 +21,12 @@ public class AlaCarte extends MenuItems {
 	public void setPrice(double price) {
 		this.Price = price;
 	}
-	//print Entities.AlaCarte attributes
+	
+	
+	
+	//print AlaCarte attributes
 	public String toString() {
-		String print = ("Entities.Category: " + this.getCategory() +
-						"Name: " + this.getName() +
+		String print = ("Name: " + this.getName() +
 						"Description: "+ this.getDescription() +
 						"Price: " + this.getPrice());
 		return print;

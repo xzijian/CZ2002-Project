@@ -2,6 +2,7 @@ package Managers;
 
 import Entities.Order;
 import Entities.Restaurant;
+import UI.OrderUI;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class OrderMgr {
 
     private static ArrayList<Order> orders = Restaurant.orders;
     private static ArrayList<Order> completedOrders = Restaurant.completedOrders;
+
     public static void CompleteOrder(Order order){
         completedOrders.add(order);
         orders.remove(order);
@@ -30,20 +32,18 @@ public class OrderMgr {
             System.out.println("No orders available to edit!");
             return;
         }
-
         int index = 0;
         Order order;
-
         System.out.println("\nSelect an order.");
-        for(Order o : orders){
-            System.out.println("(" + index++ + ") OrderID: " + o.getOrderID() + "    TableID: " + o.getFromReservation().getTableNum());
+        for(Order order1 : orders){
+            System.out.println("(" + index++ + ") OrderID: " + order1.getOrderID() + "    TableID: " + order1.getFromReservation().getTableNum());
         }
         System.out.println("Enter the number of your choice: ");
         int choice = sc.nextInt();
 
         try {
             order = orders.get(choice);
-            //OrderUI.menuShowOrderOptions(order);
+            OrderUI.menuShowOrder(order);
         }catch(IndexOutOfBoundsException e){
             System.out.println("Invalid index entered!");
         }
