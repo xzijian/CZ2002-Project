@@ -1,3 +1,5 @@
+package Entities;
+
 import Entities.AlaCarte;
 import Entities.Category;
 import Entities.MenuItems;
@@ -8,8 +10,8 @@ public class SetPackage extends MenuItems {
 	private ArrayList<AlaCarte> set = new ArrayList<AlaCarte>();
 	private double discountRate;
 	
-	public SetPackage(String name, String desc, Category type, double price) {
-		super(name, desc, type);
+	public SetPackage(String name, String desc, double price) {
+		super(name, desc);
 		this.Price = price;
 		this.discountRate = 1;
 	}
@@ -65,8 +67,7 @@ public class SetPackage extends MenuItems {
 		System.out.println("Set name: " + this.getName());
 		for (AlaCarte alacarte: set) {
 			System.out.println("ID: " + this.getSet().indexOf(alacarte) + 
-						       "\nName: " + alacarte.getName() + 
-						       "\nEntities.Category: " + alacarte.getCategory() +
+						       "\nName: " + alacarte.getName() +
 							   "\nDescription: " + alacarte.getDescription() +
 							   "\nPrice: " + alacarte.getPrice());
 		}

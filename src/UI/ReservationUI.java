@@ -18,7 +18,7 @@ import java.util.Date;
 
 
 public class ReservationUI {
-	public static void reservationChoice() throws ParseException {
+	public static void reservationChoices() throws ParseException {
 		Scanner sc = new Scanner(System.in);
 		int choice;
 		
