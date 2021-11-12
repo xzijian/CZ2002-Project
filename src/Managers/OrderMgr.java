@@ -6,7 +6,6 @@ import Entities.Order;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Entities.Restaurant;
-import Managers.ReservationMgr;
 
 /**
  * UI.OrderUI class represents an order

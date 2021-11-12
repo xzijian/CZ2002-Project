@@ -4,10 +4,9 @@ import Entities.Order;
 import Entities.Reservation;
 import Entities.Restaurant;
 import Managers.OrderMgr;
-import Managers.ReservationMgr;
 import Entities.Staff;
+import Managers.ReservationMgr;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
