@@ -1,6 +1,6 @@
 package Entities;
 
-import Entities.Category;
+
 import Entities.MenuItems;
 
 public class AlaCarte extends MenuItems {
