@@ -27,6 +27,8 @@ public class ReservationUI {
             System.out.println("\nInput your choice: ");
             System.out.println("1. Make Reservation");
             System.out.println("2. List Reservation Availability");
+			System.out.println("3. Remove Reservation");
+			System.out.println("4. Back");
 
         	System.out.println();
         	
@@ -41,15 +43,10 @@ public class ReservationUI {
         		break;
         	case 3:
 				removeReservationUI();
-        		break;
-        	case 4:
-        		break;
-        	case 5:
-        		break;
         	default:
         		System.out.println("Invalid input please try again.");
         	}
-        } while (choice < 6);
+        } while (choice < 4);
 	}
 
 
@@ -57,15 +54,14 @@ public class ReservationUI {
 	public static void createReservationUI() throws ParseException {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter Customer Number: ");
-		/*String phone_no = scan.nextLine()
+		String phone_no = scan.nextLine();
 		Customer cust = CustomerMgr.getCustomer(phone_no);
 		//get customer ADD CUSTOMER TO DATABASE IF NOT ALREADY IN
 		if (cust == null) {
-			CustomerMgr.createCustomer(String phone_no);
-		}*/
-		//if (cust == null) {
-		Customer cust = new Customer("Placeholder", "91234567", false);
-		//}
+			CustomerMgr.createCustomer(phone_no);
+			cust = CustomerMgr.getCustomer(phone_no);
+		}
+
 
 		System.out.print("Number of pax: ");
 		int pax = scan.nextInt();
@@ -89,8 +85,12 @@ public class ReservationUI {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Provide customer's number: ");
-		CustomerMgr.getCustomer(scanner.nextLine());
-
+		Customer cust = CustomerMgr.getCustomer(scanner.nextLine());
+		if (cust != null) {
+			ReservationMgr.removeReservation(cust);
+		} else {
+			System.out.println("Customer does not have any reservations.");
+		}
 
 	}
 }

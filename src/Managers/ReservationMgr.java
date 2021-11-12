@@ -9,6 +9,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class ReservationMgr {
@@ -22,8 +24,24 @@ public class ReservationMgr {
     }
 
     public static void removeReservation(Customer cust) {
-        CustomerMgr.getCustomer(""); // GET CUSTOMERS ADDED IN
-        Tables.RemoveReservationByCustomer(cust);
+        Scanner s = new Scanner(System.in);
+        for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
+            Reservation r = Restaurant.RestaurantTables.get(i);
+            if (r != null) {
+                if (r.getCust().equals(cust)) {
+                    System.out.println("Remove " + cust.getCustomerName() + "'s reservation for " + r.getReservationDT().toString() + "? (Y/N)");
+                    String choice = s.nextLine();
+                    if (choice.toUpperCase(Locale.ROOT).equals("Y")) {
+                        Restaurant.RestaurantTables.set(i, null);
+                        System.out.println("Reservation by " + cust.getCustomerName() + " has been successfully removed.");
+                        return;
+                    } else {
+                        System.out.println("Reservation removal aborted.");
+                    }
+
+                }
+            }
+        }
     }
 
     public static void printReservedTables() {
