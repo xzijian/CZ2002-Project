@@ -51,4 +51,15 @@ public class CustomerMgr {
 			System.out.println("Customer not found.");
 		}
 	}
+	//create Customer if they do not exist in the database.
+	public static void createCustomer(String number) {
+		String name;
+		boolean membership= false;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your name:");
+		name = sc.next();
+		Customer newCustomer = new Customer(name, number, membership);
+		Restaurant.customersList.add(newCustomer);
+		System.out.println("Customer Added to Database.");
+	}
 }
