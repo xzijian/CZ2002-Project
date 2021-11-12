@@ -25,7 +25,7 @@ public class Restaurant {
 	public static final Path 	DATAPATH 					= Paths.get(System.getProperty("user.dir"), "data");
 	public static final String 	RESTAURANT_FILE_NAME		= "restaurant.dat";	
 	public static ArrayList<Staff> employeeStaff;
-	public static Tables RestaurantTables;
+	public static ArrayList<Reservation> RestaurantTables;
 	public static ArrayList<Order> orders;
 	public static ArrayList<Order> completedOrders;
 	public static ArrayList<MenuItems> foodMenu;
@@ -95,20 +95,20 @@ public class Restaurant {
             restaurantState = (Object[])in.readObject();
             if(restaurantState != null){
 				employeeStaff = (ArrayList<Staff>) restaurantState[0];
-				RestaurantTables = (Tables) restaurantState[1];
+				RestaurantTables = (ArrayList<Reservation>) restaurantState[1];
 				orders = (ArrayList<Order>) restaurantState[2];
 				completedOrders = (ArrayList<Order>) restaurantState[3];
 				foodMenu = (ArrayList<MenuItems>) restaurantState[4];
 				customersList = (ArrayList<Customer>) restaurantState[5];
 				invoices = (ArrayList<Invoice>) restaurantState[6];
 			}
-              
+
             in.close();
             file.close();
               
             System.out.println("Object has been deserialized ");
-            
-        }
+
+		}
           
         catch(IOException ex)
         {
@@ -133,7 +133,7 @@ public class Restaurant {
 	
 	public static void initTables() {
 		Tables tables = new Tables(6, 3, 2);
-		Restaurant.RestaurantTables = tables;
+		Restaurant.RestaurantTables = tables.getReservedTables();
 	}
 	
 	public static void initStaff(){
