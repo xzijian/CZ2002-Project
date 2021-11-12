@@ -2,6 +2,7 @@ package Managers;
 
 import Entities.Customer;
 import Entities.Restaurant;
+import java.util.Scanner;
 
 public class CustomerMgr {
 	
