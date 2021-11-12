@@ -23,6 +23,7 @@ public class ReservationUI {
 		int choice;
 		
 		do {
+			ReservationMgr.checkExpiredReservations();
             System.out.println("\nInput your choice: ");
             System.out.println("1. Make Reservation");
             System.out.println("2. List Reservation Availability");
@@ -56,15 +57,19 @@ public class ReservationUI {
 	public static void createReservationUI() throws ParseException {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter Customer Number: ");
-		//Customer cust = CustomerMgr.getCustomer(scan.nextLine());
+		/*String phone_no = scan.nextLine()
+		Customer cust = CustomerMgr.getCustomer(phone_no);
 		//get customer ADD CUSTOMER TO DATABASE IF NOT ALREADY IN
+		if (cust == null) {
+			CustomerMgr.createCustomer(String phone_no);
+		}*/
 		//if (cust == null) {
 		Customer cust = new Customer("Placeholder", "91234567", false);
 		//}
 
 		System.out.print("Number of pax: ");
 		int pax = scan.nextInt();
-		int tableNum = Tables.getAvailableTable(pax);
+		int tableNum = ReservationMgr.getAvailableTable(pax);
 		scan.nextLine();
 
 		System.out.print("Date and time DD/MM/YYYY HH:mm : ");
@@ -77,7 +82,7 @@ public class ReservationUI {
 	}
 
 	public static void listReservationsUI() {
-		Tables.printReservedTables();
+		ReservationMgr.printReservedTables();
 	}
 
 	public static void removeReservationUI() {

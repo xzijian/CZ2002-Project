@@ -1,6 +1,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Tables implements Serializable {
     private int availableTablesOfTwo;
@@ -9,7 +10,7 @@ public class Tables implements Serializable {
     private int numOfTablesOfTwo;//6
     private int numOfTablesOfSix;//3
     private int numOfTablesOfTen;//2
-    private static Reservation[] reservedTable;
+    private static ArrayList<Reservation> reservedTable;
     private boolean atMaxCapacity;
 
     public Tables(int numOfTablesOfTwo, int numOfTablesOfSix, int numOfTablesOfTen)
@@ -18,10 +19,10 @@ public class Tables implements Serializable {
         this.availableTablesOfSix = numOfTablesOfSix;
         this.availableTablesOfTen = numOfTablesOfTen;
 
-        this.reservedTable = new Reservation[numOfTablesOfSix + numOfTablesOfTen +numOfTablesOfTwo];
+        reservedTable = new ArrayList<>();
 
-        for (Reservation table: reservedTable) {
-            table = null; // Entities.Tables without reservations are set to null
+        for (int i = 0; i < 12; i++) {
+            reservedTable.add(i, null); // Entities.Tables without reservations are set to null
         }
 
         this.atMaxCapacity = false;
@@ -39,36 +40,7 @@ public class Tables implements Serializable {
         return availableTablesOfTwo;
     }
 
-    public static int getAvailableTable(int pax) {
-        int i;
-        if (pax <= 2) {
-            i = 0;
-        } else if (pax <= 6){
-            i = 6;
-        } else if (pax <= 10) {
-            i = 6 + 3;
-        } else {
-            return -1;
-        }
-        for (; i < reservedTable.length; i++) {
-            if (reservedTable[i] == null) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
-    public static void setReservedTable(Reservation r) {
-        reservedTable[r.getTableNum()] = r;
-    }
-
-    public static void printReservedTables() {
-        for (Reservation r : reservedTable) {
-            if (r != null) {
-                r.printReservationDetails();
-            }
-        }
-    }
 
     public static void RemoveReservationByCustomer(Customer cust) {
         for (Reservation r : reservedTable) {
@@ -78,7 +50,12 @@ public class Tables implements Serializable {
             }
         }
         System.out.println("Reservation successfully removed.\nRemaining Reservations: ");
-        printReservedTables();
+
     }
+
+    public  ArrayList<Reservation> getReservedTables() {
+        return reservedTable;
+    }
+
 
 }
