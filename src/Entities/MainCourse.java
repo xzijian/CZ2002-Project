@@ -2,7 +2,7 @@ package Entities;
 
 
 import Entities.MenuItems;
-public abstract class MainCourse extends AlaCarte {
+public class MainCourse extends AlaCarte {
 
 	public MainCourse(String name, String desc, double price) {
 		super(name, desc, price);
