@@ -1,18 +1,18 @@
 package Entities;
 
-
 import Entities.MenuItems;
 
-public abstract class AlaCarte extends MenuItems {
+import java.util.Locale;
+
+public class AlaCarte extends MenuItems {
 
 	private double Price;
-
+	private Category categoryType;
 	
 	public AlaCarte(String name, String desc, double price) {
 		super(name, desc);
 		this.Price = price;
 	}
-	
 	@Override
 	public double getPrice() {
 		return this.Price;
@@ -21,13 +21,23 @@ public abstract class AlaCarte extends MenuItems {
 	public void setPrice(double price) {
 		this.Price = price;
 	}
-	
-	public void Category() {
-		System.out.println("Category: ");
+
+	public String getCategory() {
+		return categoryType.category();
 	}
-	
-	
-	//print AlaCarte attributes
+	public void setCategory(String category) {
+		if (category.toUpperCase(Locale.ROOT).equals("DRINK")){
+			this.categoryType = new Drink();
+		}
+		if (category.toUpperCase(Locale.ROOT).equals("MAINCOURSE")){
+			this.categoryType = new MainCourse();
+		}
+		if (category.toUpperCase(Locale.ROOT).equals("DESSERT")){
+			this.categoryType = new Dessert();
+		}
+	}
+
+	//print Entities.AlaCarte attributes
 	public String toString() {
 		String print = ("Name: " + this.getName() +
 						"Description: "+ this.getDescription() +

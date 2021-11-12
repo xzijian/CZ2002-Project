@@ -21,8 +21,6 @@ public abstract class MenuItems {
 	public void setDescription(String desc) {
 		this.Description = desc;
 	}
-	
-
 	public abstract double getPrice();
 	public abstract void setPrice(double price);
 	

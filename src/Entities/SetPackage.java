@@ -1,7 +1,12 @@
-package entity;
+package Entities;
+
+import Entities.AlaCarte;
+import Entities.Category;
+import Entities.MenuItems;
+
 import java.util.ArrayList;
 
-public class SetPackage extends MenuItems {	
+public class SetPackage extends MenuItems {
 	private ArrayList<AlaCarte> set = new ArrayList<AlaCarte>();
 	private double discountRate;
 	
@@ -62,7 +67,7 @@ public class SetPackage extends MenuItems {
 		System.out.println("Set name: " + this.getName());
 		for (AlaCarte alacarte: set) {
 			System.out.println("ID: " + this.getSet().indexOf(alacarte) + 
-						       "\nName: " + alacarte.getName() + 
+						       "\nName: " + alacarte.getName() +
 							   "\nDescription: " + alacarte.getDescription() +
 							   "\nPrice: " + alacarte.getPrice());
 		}
