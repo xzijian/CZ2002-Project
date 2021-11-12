@@ -26,7 +26,7 @@ public class Reservation implements Serializable {
     public Customer getCust(){ return this.cust; }
 
     public void printReservationDetails() {
-        System.out.println("Table: " + this.tableNum + " is reserved by " + this.cust.getCustomerName() + " for Date:\n"
+        System.out.println("Table: " + (this.tableNum + 1) + " is reserved by " + this.cust.getCustomerName() + " for Date:\n"
                 + this.datetime );
     }
 
