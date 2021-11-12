@@ -25,12 +25,12 @@ public class OrderUI {
     public static void orderChoices(Staff currentStaff){
         int choice;
         do {
-            System.out.println("\nSelect a choice: ");
+            System.out.println("\n\n");
+            System.out.println("\t==Order Options==");
             System.out.println("(1) Take a new order");
             System.out.println("(2) Edit Order");
-            System.out.println("(3) Back");
-            System.out.println();
-            System.out.println("Enter your choice : ");
+            System.out.println("(3) Back\n");
+            System.out.println("Input your choice: ");
             choice = sc.nextInt();
 
             switch (choice) {
@@ -53,7 +53,7 @@ public class OrderUI {
         }
         int index = 0;
         Order order;
-        System.out.println("\nSelect an order.");
+        System.out.println("\nSelect an order: ");
         for(Order order1 : orders){
             System.out.println("(" + index++ + ") OrderID: " + order1.getOrderID() + "    TableID: " + order1.getFromReservation().getTableNum());
         }
