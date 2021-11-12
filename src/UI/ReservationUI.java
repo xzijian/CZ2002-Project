@@ -24,12 +24,14 @@ public class ReservationUI {
 		
 		do {
 			ReservationMgr.checkExpiredReservations();
-            System.out.println("\nInput your choice: ");
-            System.out.println("1. Make Reservation");
-            System.out.println("2. List Reservation Availability");
-			System.out.println("3. Remove Reservation");
-			System.out.println("4. Show Table Availability");
-
+			System.out.println("\n\n");
+			System.out.println("\t==Reservation Options==");
+            System.out.println("(1) Make Reservation");
+            System.out.println("(2) List Reservation Availability");
+			System.out.println("(3) Remove Reservation");
+			System.out.println("(4) Show Table Availability");
+			System.out.println("(5) Back\n");
+			System.out.print("Input your choice: ");
         	System.out.println();
         	
         	choice = sc.nextInt();
