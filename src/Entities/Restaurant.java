@@ -126,6 +126,7 @@ public class Restaurant {
 	public static void initRestaurant() {
 		initStaff();
 		initTables();
+		customersList = new ArrayList<Customer>();
 		initInvoices();
 		initOrders();
 		initCompletedOrders();
