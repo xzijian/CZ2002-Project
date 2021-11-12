@@ -1,6 +1,8 @@
 package Entities;
 
-public class Tables {
+import java.io.Serializable;
+
+public class Tables implements Serializable {
     private int availableTablesOfTwo;
     private int availableTablesOfSix;
     private int availableTablesOfTen;
@@ -16,7 +18,7 @@ public class Tables {
         this.availableTablesOfSix = numOfTablesOfSix;
         this.availableTablesOfTen = numOfTablesOfTen;
 
-        reservedTable = new Reservation[numOfTablesOfSix + numOfTablesOfTen +numOfTablesOfTwo];
+        this.reservedTable = new Reservation[numOfTablesOfSix + numOfTablesOfTen +numOfTablesOfTwo];
 
         for (Reservation table: reservedTable) {
             table = null; // Entities.Tables without reservations are set to null

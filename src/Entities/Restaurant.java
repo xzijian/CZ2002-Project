@@ -1,4 +1,5 @@
-package restaurant;
+package Entities;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,7 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import restaurant.Staff;
+import Entities.Staff;
+import Entities.Tables;
 
 public class Restaurant {
 	
@@ -23,7 +25,11 @@ public class Restaurant {
 	public static final Path 	DATAPATH 					= Paths.get(System.getProperty("user.dir"), "data");
 	public static final String 	RESTAURANT_FILE_NAME		= "restaurant.dat";	
 	public static ArrayList<Staff> employeeStaff;
-	public static ArrayList<Tables> tables;
+	public static Tables RestaurantTables;
+	public static ArrayList<Order> orders;
+	public static ArrayList<Order> completedOrders;
+	public static ArrayList<MenuItems> foodMenu;
+	public static ArrayList<Customer> customersList;
 	
 	
 	public static void saveState() {
@@ -37,7 +43,11 @@ public class Restaurant {
 		
 		Object[] restaurantState 	= {
 				employeeStaff,
-				tables};
+				RestaurantTables,
+				orders,
+				completedOrders,
+				foodMenu,
+				customersList};
 		
 		Path 				saveFileName 	= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileOutputStream   	file 			= null;
@@ -83,7 +93,11 @@ public class Restaurant {
             restaurantState = (Object[])in.readObject();
             if(restaurantState != null){
 				employeeStaff = (ArrayList<Staff>) restaurantState[0];
-				tables = (ArrayList<Tables>) restaurantState[1];
+				RestaurantTables = (Tables) restaurantState[1];
+				orders = (ArrayList<Order>) restaurantState[2];
+				completedOrders = (ArrayList<Order>) restaurantState[3];
+				foodMenu = (ArrayList<MenuItems>) restaurantState[4];
+				customersList = (ArrayList<Customer>) restaurantState[5];
 			}
               
             in.close();
@@ -112,8 +126,8 @@ public class Restaurant {
 	}
 	
 	public static void initTables() {
-		ArrayList<Tables>table = new ArrayList<Tables>();
-		table.add(new Tables(6, 3, 2));
+		Tables tables = new Tables(6, 3, 2);
+		Restaurant.RestaurantTables = tables;
 	}
 	
 	public static void initStaff(){

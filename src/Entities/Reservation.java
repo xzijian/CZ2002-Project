@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Reservation implements Serializable {
-    private Date time;
     private Date datetime;
     private int numOfPax;
     private int tableNum;
