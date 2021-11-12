@@ -1,66 +1,69 @@
 import Entities.Restaurant;
 import Entities.Staff;
-import Entities.Tables;
+import Managers.InvoiceMgr;
 import UI.MenuUI;
+import Managers.OrderMgr;
+import UI.OrderUI;
 import UI.ReservationUI;
 
-import java.sql.SQLOutput;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-
+    private static Staff current_staff = null;
     public static Scanner sc = new Scanner(System.in);
-
     public static void main(String[] args) throws ParseException {
         Restaurant.loadState();//load restaurant data
-        //login
-        System.out.println(Restaurant.RestaurantTables);
+        while (current_staff == null)
+            current_staff = login(Restaurant.employeeStaff);
         showOptions();
-
-
 
         Restaurant.saveState();
         System.exit(0);
     }
 
     public static void showOptions() throws ParseException {
-        int choice;
-        do {
+        int flag  = 1;
+        while (flag == 1) {
             System.out.println("\t==STAFF INTERFACE==");
             System.out.println("1.Access Reservations");
-            System.out.println("2.Update Orders");
+            System.out.println("2.Access Orders");
             System.out.println("3.Edit Menu");
-            System.out.println("4.Exit");
+            System.out.println("4.Print Sales Revenue");
+            System.out.println("5.Logout");
             System.out.print("Enter option: ");
 
-            choice = sc.nextInt();
+            int choice = sc.nextInt();
 
             switch (choice) {
                 case 1:
                     ReservationUI.reservationChoice();
                     continue;
                 case 2:
+                    OrderUI.PendingOrder(current_staff);
                     continue;
                 case 3:
                     MenuUI.MenuUIOptions();
                     continue;
                 case 4:
-                default:
-                    System.out.println("Shutting down...");
-
+                    InvoiceMgr.printSalesRevenue();
+                    continue;
+                case 5:
+                    flag = 0;
+                    break;
             }
-        }while (choice < 4);
+        }
     }
-
-    public void login() { //return staff instead of void
-        System.out.println("\t\t\tBrielle's Bistro Staff Interface\n");
-        System.out.print("Enter EmployeeID: ");
-        String empID = sc.nextLine();
-
-        // parse employee ARRAYLIST and set employee
-        // logic for failed verification
-        System.out.println("Logged in as: Xavier");
+    public static Staff login(ArrayList<Staff> staffs){
+        int index = 0;
+        for(Staff s : staffs){
+            System.out.println("(" + index++ + ") EmployeeID: " + s.getEmployeeId() + " " + s.getStaffName());
+        }
+        System.out.println("Which employee are you?");
+        int choice = sc.nextInt();
+        Staff thisStaff = staffs.get(choice);
+        return thisStaff;
     }
 
 }

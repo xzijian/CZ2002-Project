@@ -39,7 +39,7 @@ public class Order implements Serializable {
     public int getOrderID(){ return this.OrderID; }
     public ArrayList<OrderItems> getOrderItems(){return this.itemOrdered;}
 
-    public void OrderItems(){
+    public void orderItems(){
         if(this.invoice != null) return;
         int choice;
         int index = 0;
@@ -62,7 +62,7 @@ public class Order implements Serializable {
         }
     }
 
-    public void RemoveItems(){
+    public void removeItems(){
         if(this.invoice != null) return;
         int choice;
         int index = 0;
