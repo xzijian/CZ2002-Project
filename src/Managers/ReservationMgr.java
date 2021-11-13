@@ -17,6 +17,17 @@ import java.util.concurrent.TimeUnit;
 public class ReservationMgr {
 
     public static void createReservation(Date datetime , int pax, int tableNum, Customer customer) {
+        int flag = 1;
+        for (Reservation r : Restaurant.RestaurantTables) {
+            if (r == null) {
+                flag = 0;
+                break;
+            }
+        }
+        if (flag == 1) {
+            System.out.println("Restaurant is at maximum capacity!");
+            return;
+        }
         Reservation reservation = new Reservation(datetime , pax, tableNum, customer, false);
         ReservationMgr.setReservedTable(reservation);
 
@@ -115,8 +126,8 @@ public class ReservationMgr {
     }
 
     public static Reservation reservationArrived(int tableNum) {
-        Restaurant.RestaurantTables.get(tableNum).setArrived();
-        return Restaurant.RestaurantTables.get(tableNum);
+        Restaurant.RestaurantTables.get(tableNum-1).setArrived();
+        return Restaurant.RestaurantTables.get(tableNum-1);
     }
 
     public static void showTableAvailability() {

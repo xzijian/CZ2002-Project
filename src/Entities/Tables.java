@@ -7,9 +7,6 @@ public class Tables implements Serializable {
     private int availableTablesOfTwo;
     private int availableTablesOfSix;
     private int availableTablesOfTen;
-    private int numOfTablesOfTwo;//6
-    private int numOfTablesOfSix;//3
-    private int numOfTablesOfTen;//2
     private static ArrayList<Reservation> reservedTable;
     private boolean atMaxCapacity;
 

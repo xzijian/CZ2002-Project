@@ -20,6 +20,7 @@ public class Invoice implements Serializable {
     private Customer cust;
 
     public Invoice(Order order){
+        Calendar cal = Calendar.getInstance();
         this.order = order;
         this.date = Calendar.getInstance();
         this.invoiceNumber = Calendar.getInstance().hashCode();
@@ -27,7 +28,7 @@ public class Invoice implements Serializable {
         this.gst = Math.round(0.07 * this.price * 100.0)/100.0;
         this.cust = this.order.getFromReservation().getCust();
         if (cust.getMembership()) {
-            this.totalPrice = (0.9)*(price + gst);
+            this.totalPrice = (0.85)*(price + gst);
         }
         else this.totalPrice = this.price + this.gst;
     }
@@ -38,7 +39,7 @@ public class Invoice implements Serializable {
 
     public void printInvoice(){
         System.out.println("Date & Time: " + this.order.getDateTime());
-        System.out.println("Entities.Invoice Number: " + this.invoiceNumber);
+        System.out.println("Invoice Number: " + this.invoiceNumber);
         System.out.println("Items ordered: ");
         for (MenuItems mi : this.order.getOrderItems()){
             System.out.println(mi.getName());

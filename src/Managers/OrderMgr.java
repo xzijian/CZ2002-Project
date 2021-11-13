@@ -2,6 +2,7 @@ package Managers;
 
 import Entities.MenuItems;
 import Entities.Order;
+import Entities.Invoice;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -78,6 +79,7 @@ public class OrderMgr {
             Restaurant.invoices.add(order.getInvoice());
             completeOrder(order);
             ReservationMgr.vacateReservation(order);
+            order.getInvoice().printInvoice();
         }
     }
 

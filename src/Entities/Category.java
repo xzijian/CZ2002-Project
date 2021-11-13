@@ -1,12 +1,14 @@
 package Entities;
 
-public interface Category {
+import java.io.Serializable;
+
+public interface Category extends Serializable {
 	String category();
 }
 
-class Drink implements Category{
+class Drink implements Category {
 	public String category() {
-		return "Drinks";
+		return "Drink";
 	}
 }
 

@@ -2,13 +2,29 @@ package Entities;
 
 import Entities.MenuItems;
 
+import java.io.Serializable;
 import java.util.Locale;
-
-public class AlaCarte extends MenuItems {
-
+/**
+ * Represents the AlaCarte menu in restaurant.
+ * @author Brielle Gee
+ * @version 1.0
+ * @since 2021-11-12
+ */
+public class AlaCarte extends MenuItems implements Serializable {
+	/**
+	 * The price of the alacarte item.
+	 */
 	private double Price;
+	/**
+	 * The category of the alacarte item.
+	 */
 	private Category categoryType;
-	
+	/**
+	 * Creates the alacarte item given name, description and price.
+	 * @param name
+	 * @param desc
+	 * @param price
+	 */
 	public AlaCarte(String name, String desc, double price, String category) {
 		super(name, desc);
 		this.Price = price;

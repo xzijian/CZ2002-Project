@@ -2,8 +2,8 @@ import Entities.Restaurant;
 import Entities.Staff;
 import Managers.InvoiceMgr;
 import UI.MenuUI;
-import Managers.OrderMgr;
 import UI.OrderUI;
+import Managers.MenuMgr;
 import UI.ReservationUI;
 
 import java.text.ParseException;
@@ -27,11 +27,12 @@ public class Application {
         int flag  = 1;
         while (flag == 1) {
             System.out.println("\t==STAFF INTERFACE==");
-            System.out.println("1.Access Reservations");
-            System.out.println("2.Access Orders");
-            System.out.println("3.Edit Menu");
-            System.out.println("4.Print Sales Revenue");
-            System.out.println("5.Logout");
+            System.out.println("(1) Access Reservations");
+            System.out.println("(2) Access Orders");
+            System.out.println("(3) View Menu");
+            System.out.println("(4) Edit Menu");
+            System.out.println("(5) Print Sales Revenue");
+            System.out.println("(6) Logout");
             System.out.print("Enter option: ");
 
             int choice = sc.nextInt();
@@ -44,12 +45,15 @@ public class Application {
                     OrderUI.orderChoices(current_staff);
                     continue;
                 case 3:
-                    MenuUI.MenuUIOptions();
+                    viewMenu();
                     continue;
                 case 4:
-                    InvoiceMgr.printSalesRevenue();
+                    MenuUI.MenuUIOptions();
                     continue;
                 case 5:
+                    InvoiceMgr.printSalesRevenue();
+                    continue;
+                case 6:
                     flag = 0;
                     break;
             }
@@ -58,12 +62,44 @@ public class Application {
     public static Staff login(ArrayList<Staff> staffs){
         int index = 0;
         for(Staff s : staffs){
-            System.out.println("(" + index++ + ") EmployeeID: " + s.getEmployeeId() + " " + s.getStaffName());
+            System.out.println("(" + index++ + ") Employee Name: "  + s.getStaffName());
         }
-        System.out.println("Which employee are you?");
+        System.out.print("Enter Employee ID: ");
         int choice = sc.nextInt();
         Staff thisStaff = staffs.get(choice);
         return thisStaff;
+    }
+    private static void viewMenu(){
+        Scanner sc1 = new Scanner(System.in);
+        int choice;
+        do {
+            MenuMgr.printCategories();
+            choice = sc1.nextInt();
+            switch (choice){
+                case 1:
+                    MenuMgr.printDrinks();
+                    System.out.print("Enter 1 to back: ");
+                    choice = sc.nextInt();
+                    break;
+                case 2:
+                    MenuMgr.printDesserts();
+                    System.out.print("Enter 1 to back: ");
+                    choice = sc.nextInt();
+                    break;
+                case 3:
+                    MenuMgr.printMains();
+                    System.out.print("Enter 1 to back: ");
+                    choice = sc.nextInt();
+                    break;
+                case 4:
+                    MenuMgr.printSets();
+                    System.out.print("Enter 5 to exit: ");
+                    choice = sc.nextInt();
+                    break;
+                default:
+                    System.out.println("Exiting Menu...");
+            }
+        } while(choice <5);
     }
 
 }

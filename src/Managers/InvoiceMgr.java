@@ -13,11 +13,11 @@ public class InvoiceMgr {
     public static void printSalesRevenue(){
         int day1, month1, year1, day2, month2, year2;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter date to start (in format DD MM YYYY");
+        System.out.println("Enter date to start (in format DD MM YYYY)");
         day1 = sc.nextInt();
         month1 = sc.nextInt();
         year1 = sc.nextInt();
-        System.out.println("Enter date till (in format DD MM YYYY");
+        System.out.println("Enter date till (in format DD MM YYYY)");
         day2 = sc.nextInt();
         month2 = sc.nextInt();
         year2 = sc.nextInt();
@@ -31,9 +31,9 @@ public class InvoiceMgr {
         int j = 0;
         int k = 0;
         for (Invoice i: invoices) {
-            if ((i.getDate().get(Calendar.DAY_OF_MONTH) == day1) & (i.getDate().get(Calendar.MONTH) + 1 == month1) && (i.getDate().get(Calendar.YEAR) == year1))
-            start = j;
-            if ((i.getDate().get(Calendar.DAY_OF_MONTH) == day2) & (i.getDate().get(Calendar.MONTH) + 1 == month2) && (i.getDate().get(Calendar.YEAR) == year2))
+            if ((i.getDate().get(Calendar.DAY_OF_MONTH) >= day1) & (i.getDate().get(Calendar.MONTH) + 1 >= month1) && (i.getDate().get(Calendar.YEAR) == year1))
+                if (j<= start) start = j;
+            if ((i.getDate().get(Calendar.DAY_OF_MONTH) <= day2) & (i.getDate().get(Calendar.MONTH) + 1 <= month2) && (i.getDate().get(Calendar.YEAR) == year2))
                 end = k;
             j++;
             k++;

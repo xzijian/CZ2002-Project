@@ -5,16 +5,17 @@ import Entities.Category;
 import Entities.MenuItems;
 import Managers.MenuMgr;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SetPackage extends MenuItems {
+public class SetPackage extends MenuItems implements Serializable {
 	private ArrayList<MenuItems> set = new ArrayList<MenuItems>();
 	private double discountRate;
 	
 	public SetPackage(String name, String desc) {
 		super(name, desc);
 		this.Price = 0;
-		this.discountRate = 1;
+		this.discountRate = 0.80;
 	}
 	public double getDiscountRate() {
 		return this.discountRate;
@@ -57,7 +58,11 @@ public class SetPackage extends MenuItems {
 	}
 	@Override
 	public double getPrice() {
-		return this.Price;
+		double sum = 0.0;
+		for (MenuItems alacarte: set) {
+			sum = alacarte.getPrice();
+		}
+		return sum * this.getDiscountRate();
 	}
 	@Override
 	public void setPrice(double price) {

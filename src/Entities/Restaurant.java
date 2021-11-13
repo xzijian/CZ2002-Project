@@ -1,5 +1,6 @@
 package Entities;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,6 +38,7 @@ public class Restaurant {
 	
 	
 	public static void saveState() {
+
 		if(!Files.exists(DATAPATH)){
 			System.out.println("Data folder not found!");
 			File dir = new File(DATAPATH.toString());
@@ -70,9 +72,6 @@ public class Restaurant {
               
             out.close();
             file.close();
-              
-            System.out.println("Object has been serialized");
-  
         }
           
         catch(IOException ex)
@@ -108,9 +107,6 @@ public class Restaurant {
               
             in.close();
             file.close();
-              
-            System.out.println("Object has been deserialized ");
-            
         }
           
         catch(IOException ex)
@@ -136,13 +132,32 @@ public class Restaurant {
 		initCustomer();
 	}
 
-	public static void initFoodMenu(){
+	public static void initFoodMenu() {
 		ArrayList<ArrayList<MenuItems>> menu = new ArrayList<ArrayList<MenuItems>>();
-		for(int i =0; i<4; i++){
+		for (int i = 0; i < 4; i++) {
 			menu.add(new ArrayList<MenuItems>());
 		}
-		AlaCarte coke = new AlaCarte("Coke", "coke", 5.00, "Drinks");
+
+		MenuItems coke = new AlaCarte("Coke", "coke", 2.50, "Drink");
+		MenuItems water = new AlaCarte("Sparkling Water", "water", 2.00, "Drink");
+		MenuItems greentea = new AlaCarte("Green Tea", "lucha", 3.50, "Drink");
 		menu.get(0).add(coke);
+		menu.get(0).add(water);
+		menu.get(0).add(greentea);
+
+		MenuItems tiramisu = new AlaCarte("Tiramisu", "egg", 7.90, "Dessert");
+		MenuItems creme = new AlaCarte("Creme Brulee", "egg", 10.00, "Dessert");
+		MenuItems nycheese = new AlaCarte("New York Cheesecake", "egg", 4.90, "Dessert");
+		menu.get(1).add(tiramisu);
+		menu.get(1).add(creme);
+		menu.get(1).add(nycheese);
+
+		MenuItems Fish = new AlaCarte("Fish & Chip", "fish", 11.50, "MainCourse");
+		MenuItems Sirloin = new AlaCarte("Sirloin Steak", "cow", 16.90, "MainCourse");
+		MenuItems impo = new AlaCarte("Impossible Meat Burger", "plant", 15.50, "MainCourse");
+		menu.get(2).add(Fish);
+		menu.get(2).add(Sirloin);
+		menu.get(2).add(impo);
 		Restaurant.foodMenu = menu;
 	}
 	public static void initTables() {
@@ -151,11 +166,13 @@ public class Restaurant {
 	}
 	public static void initCustomer(){
 		ArrayList<Customer> customers = new ArrayList<Customer>();
+		customers.add(new Customer("Hermes", "12345678", true));
 		Restaurant.customersList = customers;
 	}
 	public static void initStaff(){
 		ArrayList<Staff> staffs = new ArrayList<Staff>();
-		staffs.add(new Staff("John", true, 1, "Dog"));
+		staffs.add(new Staff("Xavier", true, 1, "Cashier"));
+		staffs.add(new Staff("Brielle", false,2,"Boss"));
 
 		Restaurant.employeeStaff = staffs;
 	}
@@ -172,6 +189,7 @@ public class Restaurant {
 
 	public static void initInvoices(){
 		ArrayList<Invoice> invoices1 = new ArrayList<Invoice>();
+
 		Restaurant.invoices = invoices1;
 	}
 
