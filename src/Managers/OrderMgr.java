@@ -9,15 +9,32 @@ import java.util.Scanner;
 import Entities.Restaurant;
 
 /**
- * UI.OrderUI class represents an order
- * @author xie zijian
- * @version 1.0
- * @since 2021-11-10
+ Represents the order manager in restaurant
+ @author Xie Zijian
+ @version 1.0
+ @since 2021-11-12
  */
 
 public class OrderMgr {
+
+    /**
+     * The arrayList of orders.
+     */
+
     private static ArrayList<Order> orders = Restaurant.orders;
+
+    /**
+     * The arrayList of completed orders.
+     */
+
     private static ArrayList<Order> completedOrders = Restaurant.completedOrders;
+
+    /**
+     * Shows all options user can make which includes
+     * showing order details, add order items,
+     * remove order items and print invoice.
+     */
+
     public static void menuShowOrder(Order order){
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -49,6 +66,11 @@ public class OrderMgr {
             }
         } while (choice < 4);
     }
+
+    /**
+     * Display the items ordered in this order.
+     */
+
     public static void orderDetails(Order order){
         if (order.getOrderItems().size() == 0) System.out.println("No order items in order");
         else {
@@ -59,6 +81,11 @@ public class OrderMgr {
         }
     }
 
+
+    /**
+     * Create new order for reservation.
+     */
+
     public static void takeOrder(Order order){
         char choice;
         Scanner sc = new Scanner(System.in);
@@ -68,6 +95,10 @@ public class OrderMgr {
             choice = sc.nextLine().charAt(0);
         } while (choice == 'Y');
     }
+
+    /**
+     * Remove menu items from order.
+     */
 
     public static void removeOrderItem(Order order){
         order.removeItems();
@@ -82,6 +113,10 @@ public class OrderMgr {
             order.getInvoice().printInvoice();
         }
     }
+
+    /**
+     * Completes an order and move it to the completed order arrayList.
+     */
 
     public static void completeOrder(Order order){
         completedOrders.add(order);

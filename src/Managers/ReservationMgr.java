@@ -14,7 +14,22 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/**
+ Represents the reservation manager in the restaurant.
+ @author Xavier Goh
+ @version 1.0
+ @since 2021-11-12
+ */
+
 public class ReservationMgr {
+
+    /**
+     * Creates the reservation with the given date, pax, table number and customer
+     * @param datetime
+     * @param pax
+     * @param tableNum
+     * @param customer
+     */
 
     public static void createReservation(Date datetime , int pax, int tableNum, Customer customer) {
         int flag = 1;
@@ -35,6 +50,11 @@ public class ReservationMgr {
         printReservedTables();
     }
 
+    /**
+     * Vacates a reservation after customer paid.
+     * @param order
+     */
+
     public static void vacateReservation(Order order){
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             Reservation r = Restaurant.RestaurantTables.get(i);
@@ -45,6 +65,11 @@ public class ReservationMgr {
             }
         }
     }
+
+    /**
+     * Removes reservation.
+     */
+
     public static void removeReservation() {
         Scanner s = new Scanner(System.in);
         System.out.println("Provide customer's number: ");
@@ -69,6 +94,10 @@ public class ReservationMgr {
         System.out.println("Customer does not have any reservation.");
     }
 
+    /**
+     * Prints the table that are reserved.
+     */
+
     public static void printReservedTables() {
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             if (Restaurant.RestaurantTables.get(i) != null && Restaurant.RestaurantTables.get(i).isArrived() == false) {
@@ -77,6 +106,10 @@ public class ReservationMgr {
         }
     }
 
+    /**
+     * Prints the table where customer arrived.
+     */
+
     public static void printArrivedTables() {
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             if (Restaurant.RestaurantTables.get(i) != null) {
@@ -84,6 +117,12 @@ public class ReservationMgr {
             }
         }
     }
+
+    /**
+     * Gets the tables that are available.
+     * @param pax
+     * @return available tables
+     */
 
     public static int getAvailableTable(int pax) {
         int i;
@@ -104,10 +143,18 @@ public class ReservationMgr {
         return -1;
     }
 
+    /**
+     * Change reserve status of the table.
+     * @param r
+     */
 
     public static void setReservedTable(Reservation r) {
         Restaurant.RestaurantTables.set(r.getTableNum(), r);
     }
+
+    /**
+     * To check if reservation has expired.
+     */
 
     public static void checkExpiredReservations() {
         ZonedDateTime instant = ZonedDateTime.now();
@@ -125,10 +172,21 @@ public class ReservationMgr {
         }
     }
 
+    /**
+     * Change status of arrival for the table.
+     * @param tableNum
+     * @return the reservation which the customer just arrived
+     */
+
     public static Reservation reservationArrived(int tableNum) {
         Restaurant.RestaurantTables.get(tableNum-1).setArrived();
         return Restaurant.RestaurantTables.get(tableNum-1);
     }
+
+    /**
+     * Display current table availability.
+     * @param
+     */
 
     public static void showTableAvailability() {
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {

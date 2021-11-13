@@ -3,12 +3,57 @@ package Entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ Represents the tables in the restaurant.
+ @author Xavier Goh
+ @version 1.0
+ @since 2021-11-12
+ */
+
 public class Tables implements Serializable {
+
+    /**
+     * Number of 2-seater tables available.
+     */
+
     private int availableTablesOfTwo;
+
+    /**
+     * Number of 6-seater tables available.
+     */
+
     private int availableTablesOfSix;
+
+    /**
+     * Number of 10-seater tables available.
+     */
+
     private int availableTablesOfTen;
+
+    /**
+     * Number of 10-seater tables in the restaurant.
+     * Initializing it to 6.
+     */
+
+    /**
+     * arrayList of reservation.
+     */
+
     private static ArrayList<Reservation> reservedTable;
+
+    /**
+     * To indicate if restaurant is full
+     */
+
     private boolean atMaxCapacity;
+
+    /**
+     * Creating the tables of two, six and ten with the
+     * given values.
+     * @param numOfTablesOfTwo
+     * @param numOfTablesOfSix
+     * @param numOfTablesOfTen
+     */
 
     public Tables(int numOfTablesOfTwo, int numOfTablesOfSix, int numOfTablesOfTen)
     {
@@ -25,19 +70,37 @@ public class Tables implements Serializable {
         this.atMaxCapacity = false;
     }
 
+    /**
+     * Get the number of available tables of six.
+     * @return this table's number of available table of six
+     */
+
     public int getAvailableTablesOfSix() {
         return availableTablesOfSix;
     }
+
+    /**
+     * Get the number of available tables of ten.
+     * @return this table's number of available table of ten
+     */
 
     public int getAvailableTablesOfTen() {
         return availableTablesOfTen;
     }
 
+    /**
+     * Get the number of available tables of two.
+     * @return this table's number of available table of two
+     */
+
     public int getAvailableTablesOfTwo() {
         return availableTablesOfTwo;
     }
 
-
+    /**
+     * Remove the reservation based on the customer
+     * @param cust
+     */
 
     public static void RemoveReservationByCustomer(Customer cust) {
         for (Reservation r : reservedTable) {
@@ -50,9 +113,12 @@ public class Tables implements Serializable {
 
     }
 
+    /**
+     * Gets the tables that are reserved.
+     * @return reserved tables
+     */
+
     public  ArrayList<Reservation> getReservedTables() {
         return reservedTable;
     }
-
-
 }

@@ -7,8 +7,28 @@ import java.util.Scanner;
 import Entities.*;
 import Managers.MenuMgr;
 
+/**
+ Represents the ui displayed when user is accessing the menu choice.
+ @author Xie Zijian
+ @version 1.0
+ @since 2021-11-12
+ */
+
 public class MenuUI {
+
+    /**
+     * The arrayList of arrayList of menu items.
+     */
+
     private static ArrayList<ArrayList<MenuItems>> menu = Restaurant.foodMenu;
+
+    /**
+     * Shows all options user can make which includes
+     * creating new menu item, creating new set package,
+     * editing menu items, editing set packages, remove
+     * menu entries.
+     */
+
     public static void MenuUIOptions() {
         Scanner sc1 = new Scanner(System.in);
         int choice1;
@@ -44,6 +64,11 @@ public class MenuUI {
             }
         } while (choice1 < 6);
     }
+
+    /**
+     * Creates a new menu item.
+     */
+
     private static void createMenu(){
         Scanner sc1 = new Scanner(System.in);
         int choice;
@@ -80,6 +105,10 @@ public class MenuUI {
         }while (choice < 4);
     }
 
+    /**
+     * Create new set package.
+     */
+
     private static void createSet(){
         Scanner sc1 = new Scanner(System.in);
         System.out.print("Enter name and description of new Set: ");
@@ -89,6 +118,10 @@ public class MenuUI {
         MenuMgr.addMenuItemToSet(newSet.getSet());
         menu.get(3).add(newSet);
     }
+
+    /**
+     * Edit current menu items.
+     */
 
     private static void editMenu() {
         Scanner sc1 = new Scanner(System.in);
@@ -141,6 +174,10 @@ public class MenuUI {
         }while (choice <4);
     }
 
+    /**
+     * Edit current set packages.
+     */
+
     private static void editSet(){
         Scanner sc1 = new Scanner(System.in);
         int choice;
@@ -192,6 +229,10 @@ public class MenuUI {
             }
         }while (choice < 4);
     }
+
+    /**
+     * Delete any current menu items.
+     */
 
     private static void deleteMenu() {
         Scanner sc1 = new Scanner(System.in);

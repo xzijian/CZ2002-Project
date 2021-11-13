@@ -7,20 +7,32 @@ import Managers.OrderMgr;
 import Entities.Staff;
 import Managers.ReservationMgr;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 /**
- * Entities.Order Manager class allowing user to select an order to edit
- * @author xie zijian
- * @version 1.0
- * @since 2021-11-10
+ Represents the ui displayed when user is accessing the order choice.
+ @author Xie Zijian
+ @version 1.0
+ @since 2021-11-12
  */
+
 public class OrderUI {
+
+    /**
+     * The arrayList of orders.
+     */
 
     private static ArrayList<Order> orders = Restaurant.orders;
     private static Scanner sc = new Scanner(System.in);
+
+
+    /**
+     * Shows all options user can make which includes
+     * taking new order and editing current orders.
+     */
 
     public static void orderChoices(Staff currentStaff){
         int choice;
@@ -45,6 +57,10 @@ public class OrderUI {
         } while (choice < 3);
     }
 
+    /**
+     * Allow user to select an order.
+     */
+
     public static void editPendingOrder(){
         Scanner sc = new Scanner(System.in);
         if(orders.size() == 0){
@@ -68,6 +84,11 @@ public class OrderUI {
         }
 
     }
+
+    /**
+     * Take new order with current staff as the staff taking order.
+     * @param currentStaff
+     */
 
     public static void takeOrder(Staff currentStaff){
         int choice = 0;

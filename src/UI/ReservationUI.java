@@ -13,11 +13,22 @@ import Managers.ReservationMgr;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
-
+/**
+ Represents the ui displayed when user is accessing the reservation choice.
+ @author Xavier Goh
+ @version 1.0
+ @since 2021-11-12
+ */
 
 public class ReservationUI {
+
+	/**
+	 * Shows all options user can make which includes
+	 * making reservation, list reservation, list availability
+	 * and removing reservation.
+	 * @throws ParseException
+	 */
+
 	public static void reservationChoices() throws ParseException {
 		Scanner sc = new Scanner(System.in);
 		int choice;
@@ -56,7 +67,12 @@ public class ReservationUI {
         } while (choice < 5);
 	}
 
-
+	/**
+	 * To be entered with customer number
+	 * followed by number of pax and the date and time
+	 * to create the reservation.
+	 * @throws ParseException
+	 */
 
 	public static void createReservationUI() throws ParseException {
 		Scanner scan = new Scanner(System.in);
@@ -84,14 +100,23 @@ public class ReservationUI {
 
 	}
 
+	/**
+	 * Print tables that are reserved.
+	 */
+
 	public static void listReservationsUI() {ReservationMgr.printArrivedTables();}
 
+	/**
+	 * Displays the option to remove reservation.
+	 * User to enter customer's number to verify the cancellation.
+	 */
+
 	public static void removeReservationUI() {
-
 		ReservationMgr.removeReservation();
-
-
 	}
+	/**
+	 * Displays the option to show availability.
+	 */
 
 	public static void showAvailabilityUI() {
 		ReservationMgr.showTableAvailability();

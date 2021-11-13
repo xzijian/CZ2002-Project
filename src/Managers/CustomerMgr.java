@@ -4,9 +4,24 @@ import Entities.Customer;
 import Entities.Restaurant;
 import java.util.Scanner;
 
+/**
+ Represents the manager for Customer
+ @author Hermes Lim
+ @version 1.0
+ @since 2021-11-12
+ */
+
 public class CustomerMgr {
 
-	//check if a customer exist via their phone number. Ensure no duplicate.
+	/**
+	 * Check if a customer exist via their phone number.
+	 * Ensure no duplicate.
+	 * @param name
+	 * @param number
+	 * @param member
+	 * @return boolean when customer exists in the database
+	 */
+
 	public static int checkCustomer(String name, String number, boolean member) {
 		int exist = 0;
 		if (Restaurant.customersList == null)
@@ -20,7 +35,13 @@ public class CustomerMgr {
 		}
 		return exist;
 	}
-	//obtain a customer via their number.
+
+	/**
+	 * Get customer based on contact number.
+	 * @param number
+	 * @return customer object
+	 */
+
 	public static Customer getCustomer(String number) {
 		for (Customer customer :  Restaurant.customersList) {
 			if (customer.getCustomerContact().equals(number))
@@ -32,7 +53,12 @@ public class CustomerMgr {
 		System.out.println("Customer does not exist");
 		return null;
 	}
-	//remove customer from the customerArrayList.
+
+	/**
+	 * Remove customer from customer arraylist.
+	 * @param number
+	 */
+
 	public static void removeCustomer(String number) {
 		int i = 0;
 		int removeC = 0;
@@ -50,7 +76,12 @@ public class CustomerMgr {
 			System.out.println("Customer not found.");
 		}
 	}
-	//create Customer if they do not exist in the database.
+
+	/**
+	 * Create customer if they are not in the database.
+	 * @param number
+	 */
+
 	public static void createCustomer(String number) {
 		String name;
 		boolean membership= false;

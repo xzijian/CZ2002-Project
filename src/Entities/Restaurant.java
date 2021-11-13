@@ -18,25 +18,76 @@ import Entities.Staff;
 import Entities.Tables;
 import Entities.AlaCarte;
 
+/**
+ Represents a restaurant's reservation system.
+ @author Chee Zi Hoe
+ @version 1.0
+ @since 2021-11-12
+ */
+
 public class Restaurant {
-	
-	//private String openingHours;
-	//private boolean isOpen;
-	//ArrayList<Staff> employeeStaff = new ArrayList<Staff>();
-	
-	
-	
+
+	/**
+	 * An object that may be used to locate a file in a file system.
+	 */
+
 	public static final Path 	DATAPATH 					= Paths.get(System.getProperty("user.dir"), "data");
-	public static final String 	RESTAURANT_FILE_NAME		= "restaurant.dat";	
+
+	/**
+	 * The name to give for the data after serialization.
+	 */
+
+	public static final String 	RESTAURANT_FILE_NAME		= "restaurant.dat";
+
+	/**
+	 * The arraylist containing staff which is a restaurant object.
+	 */
+
 	public static ArrayList<Staff> employeeStaff;
+
+	/**
+	 * The arraylist containing reservation which is a restaurant object.
+	 */
+
 	public static ArrayList<Reservation> RestaurantTables;
+
+	/**
+	 * The arraylist containing orders which is a restaurant object.
+	 */
+
 	public static ArrayList<Order> orders;
+
+	/**
+	 * The arraylist containing completed orders which is a restaurant object.
+	 */
+
 	public static ArrayList<Order> completedOrders;
+
+	/**
+	 * The arraylist containing arrayLists of menu items which is a restaurant object.
+	 */
+
 	public static ArrayList<ArrayList<MenuItems>> foodMenu;
+
+	/**
+	 * The arraylist containing customers which is a restaurant object.
+	 */
+
 	public static ArrayList<Customer> customersList;
+
+	/**
+	 * The arraylist containing invoices which is a restaurant object.
+	 */
+
 	public static ArrayList<Invoice> invoices ;
-	
-	
+
+	/**
+	 * Saved the current instance of the restaurant.
+	 * It does so by saving the restaurant objects in a file
+	 * The instance is saved using serialization to translate file into byte stream
+	 * IOException is catched also.
+	 */
+
 	public static void saveState() {
 
 		if(!Files.exists(DATAPATH)){
@@ -79,7 +130,15 @@ public class Restaurant {
             System.out.println("IOException is caught");
         }
 	}
-	
+
+	/**
+	 * Loads the state of the restaurant.
+	 * It does so by reading the object from the file that was saved.
+	 * It then deserialise the byte stream.
+	 * Both IOException and ClassNotFoundException is catched and default settings are loaded when no file is found to read from.
+	 *
+	 */
+
 	public static void loadState() {
 		Object[] restaurantState = null;
 		Path saveData 				= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
@@ -121,7 +180,11 @@ public class Restaurant {
             initRestaurant();
         }
 	}
-	
+
+	/**
+	 * A method to initialize the default settings when the user runs the program for the first time
+	 */
+
 	public static void initRestaurant() {
 		initStaff();
 		initTables();
@@ -131,6 +194,10 @@ public class Restaurant {
 		initFoodMenu();
 		initCustomer();
 	}
+
+	/**
+	 * Initializes MenuItems in the restaurant and creates the arraylist for the arrayList of MenuItems for the restaurant object.
+	 */
 
 	public static void initFoodMenu() {
 		ArrayList<ArrayList<MenuItems>> menu = new ArrayList<ArrayList<MenuItems>>();
@@ -160,15 +227,30 @@ public class Restaurant {
 		menu.get(2).add(impo);
 		Restaurant.foodMenu = menu;
 	}
+
+	/**
+	 * Initializes table to the default values and creates the arraylist for the table restaurant object.
+	 */
+
 	public static void initTables() {
 		Tables tables = new Tables(6, 3, 2);
 		Restaurant.RestaurantTables = tables.getReservedTables();
 	}
+
+	/**
+	 * Initializes customers in the restaurant and creates the arraylist for the customer restaurant object.
+	 */
+
 	public static void initCustomer(){
 		ArrayList<Customer> customers = new ArrayList<Customer>();
 		customers.add(new Customer("Hermes", "12345678", true));
 		Restaurant.customersList = customers;
 	}
+
+	/**
+	 * Initializes staffs in the restaurant and creates the arraylist for the staff restaurant object.
+	 */
+
 	public static void initStaff(){
 		ArrayList<Staff> staffs = new ArrayList<Staff>();
 		staffs.add(new Staff("Xavier", true, 1, "Cashier"));
@@ -177,27 +259,31 @@ public class Restaurant {
 		Restaurant.employeeStaff = staffs;
 	}
 
+	/**
+	 * Creates the arraylist for the order restaurant object.
+	 */
+
 	public static void initOrders(){
 		ArrayList<Order> order = new ArrayList<Order>();
 		Restaurant.orders = order;
 	}
+
+	/**
+	 * Creates the arraylist for the completed orders restaurant object.
+	 */
 
 	public static void initCompletedOrders(){
 		ArrayList<Order> completedorders = new ArrayList<Order>();
 		Restaurant.completedOrders = completedorders;
 	}
 
+	/**
+	 * Creates the arraylist for the invoice restaurant object.
+	 */
+
 	public static void initInvoices(){
 		ArrayList<Invoice> invoices1 = new ArrayList<Invoice>();
 
 		Restaurant.invoices = invoices1;
 	}
-
-	/*public Restaurant() {
-		openingHours = "12pm-12am";
-		isOpen = true;
-		Tables totalTables = new Tables(6, 3, 2);
-	}*/
-	
-	
 }

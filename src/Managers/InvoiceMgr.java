@@ -7,8 +7,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ Represents the invoice manager in restaurant
+ @author Xie Zijian
+ @version 1.0
+ @since 2021-11-12
+ */
+
 public class InvoiceMgr {
+
+    /**
+     * The arrayList of invoice.
+     */
+
     private static ArrayList<Invoice> invoices = Restaurant.invoices;
+
+    /**
+     * Printing out the sales revenue.
+     */
 
     public static void printSalesRevenue(){
         int day1, month1, year1, day2, month2, year2;
@@ -24,6 +40,17 @@ public class InvoiceMgr {
         double rev = getSalesRevenue(day1,month1,year1,day2,month2,year2);
         System.out.println("Total sales during this period = " + rev);
     }
+
+    /**
+     * get the sales revenue for a set period of time.
+     * @param day1
+     * @param month1
+     * @param year1
+     * @param day2
+     * @param month2
+     * @param year2
+     * @return sales revenue for the specified period of time
+     */
 
     public static double getSalesRevenue(int day1, int month1, int year1, int day2, int month2, int year2){
         double total = 0;

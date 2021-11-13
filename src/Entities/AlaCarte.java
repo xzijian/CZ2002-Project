@@ -20,28 +20,44 @@ public class AlaCarte extends MenuItems implements Serializable {
 	 */
 	private Category categoryType;
 	/**
-	 * Creates the alacarte item given name, description and price.
+	 * Creates the alacarte item given name, description, price and category.
 	 * @param name
 	 * @param desc
 	 * @param price
+	 * @param category
 	 */
 	public AlaCarte(String name, String desc, double price, String category) {
 		super(name, desc);
 		this.Price = price;
 		this.setCategory(category);
 	}
+	/**
+	 * Get the price of the alacarte item.
+	 * @return this alacarte's price
+	 */
 	@Override
 	public double getPrice() {
 		return this.Price;
 	}
+	/**
+	 * Change the price of the alacarte item.
+	 * @param price
+	 */
 	@Override
 	public void setPrice(double price) {
 		this.Price = price;
 	}
-
+	/**
+	 * Get the category of the alacarte menu
+	 * @return this alacarte's category.
+	 */
 	public String getCategory() {
 		return categoryType.category();
 	}
+	/**
+	 * Change the category of the alacarte item.
+	 * @param category
+	 */
 	public void setCategory(String category) {
 		if (category.toUpperCase(Locale.ROOT).equals("DRINK")){
 			this.categoryType = new Drink();
@@ -53,8 +69,9 @@ public class AlaCarte extends MenuItems implements Serializable {
 			this.categoryType = new Dessert();
 		}
 	}
-
-	//print Entities.AlaCarte attributes
+	/**
+	 * Prints the alacarte item's attributes.
+	 */
 	public String toString() {
 		String print = ("Name: " + this.getName() +
 						"Description: "+ this.getDescription() +

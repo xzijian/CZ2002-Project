@@ -10,7 +10,21 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main application class to start up the application.
+ * Provides an interface fo restaurant staff to perform
+ * reservation, order and manage restaurant backend.
+ * @author Chee Zi Hoe
+ * @version 1.0
+ * @since 2021-11-12
+ */
+
 public class Application {
+
+    /**
+     * Set current staff to null to signify no login yet.
+     */
+
     private static Staff current_staff = null;
     public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws ParseException {
@@ -22,6 +36,14 @@ public class Application {
         Restaurant.saveState();
         System.exit(0);
     }
+
+    /**
+     * To display the options the user can assess
+     * from the start including accessing reservations
+     * and orders. Viewing or editing Menu. Printing
+     * Sales Revenue Report.
+     * @throws ParseException
+     */
 
     public static void showOptions() throws ParseException {
         int flag  = 1;
@@ -59,6 +81,13 @@ public class Application {
             }
         }
     }
+
+    /**
+     * For user to login to their respective accounts.
+     * @param staffs
+     * @return Current Staff using
+     */
+
     public static Staff login(ArrayList<Staff> staffs){
         int index = 0;
         for(Staff s : staffs){
@@ -69,6 +98,11 @@ public class Application {
         Staff thisStaff = staffs.get(choice);
         return thisStaff;
     }
+
+    /**
+     * To display the current menu.
+     */
+
     private static void viewMenu(){
         Scanner sc1 = new Scanner(System.in);
         int choice;
