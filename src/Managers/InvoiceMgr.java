@@ -5,6 +5,7 @@ import Entities.MenuItems;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -29,26 +30,36 @@ public class InvoiceMgr {
     public static void printSalesRevenue(){
         int day1, month1, year1, day2, month2, year2;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter date to start (in format DD MM YYYY)");
-        day1 = sc.nextInt();
-        month1 = sc.nextInt();
-        year1 = sc.nextInt();
-        System.out.println("Enter date till (in format DD MM YYYY)");
-        day2 = sc.nextInt();
-        month2 = sc.nextInt();
-        year2 = sc.nextInt();
-        double rev = getSalesRevenue(day1,month1,year1,day2,month2,year2);
-        System.out.println("Total sales during this period = " + rev);
+        while(true) {
+            try{
+                System.out.println("Enter date to start (in format DD MM YYYY)");
+                day1 = sc.nextInt();
+                month1 = sc.nextInt();
+                year1 = sc.nextInt();
+                System.out.println("Enter date till (in format DD MM YYYY)");
+                day2 = sc.nextInt();
+                month2 = sc.nextInt();
+                year2 = sc.nextInt();
+
+                double rev = getSalesRevenue(day1, month1, year1, day2, month2, year2);
+                System.out.println("Total sales during this period = " + rev);
+                break;
+            } catch (InputMismatchException ex) {
+                System.out.println("Invalid date input. Please enter according to the specified format.");
+                sc.reset();
+                sc.next();
+            }
+        }
     }
 
     /**
      * get the sales revenue for a set period of time.
-     * @param day1
-     * @param month1
-     * @param year1
-     * @param day2
-     * @param month2
-     * @param year2
+     * @param day1                Day of start date
+     * @param month1              Month of start date
+     * @param year1               Year of start date
+     * @param day2                Day of end date
+     * @param month2              Month of end date
+     * @param year2               Year of end date
      * @return sales revenue for the specified period of time
      */
 
@@ -69,7 +80,7 @@ public class InvoiceMgr {
         for (int l = start; l <= end; l++){
             total += invoices.get(l).getTotalPrice();
         }
-        double twoDP = Math.round((total*1000.00)/1000.0);
+        double twoDP = Math.round((total*100.00)/100.00);
         return twoDP;
     }
 }

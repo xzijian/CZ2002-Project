@@ -59,8 +59,8 @@ public class Order implements Serializable {
     /**
      * Creates an order that is tagged with a staff.
      * It is also tagged to a reservation.
-     * @param createdBy
-     * @param fromReservation
+     * @param createdBy            Staff who created this order
+     * @param fromReservation      Reservation which ordered
      */
 
     public Order(Staff createdBy, Reservation fromReservation){

@@ -6,6 +6,7 @@ import Managers.CustomerMgr;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Entities.Tables;
 import Managers.ReservationMgr;
@@ -30,10 +31,10 @@ public class ReservationUI {
 	 */
 
 	public static void reservationChoices() throws ParseException {
+		int flag = 1;
 		Scanner sc = new Scanner(System.in);
-		int choice;
 		
-		do {
+		while (flag == 1){
 			ReservationMgr.checkExpiredReservations();
 			System.out.println("\n\n");
 			System.out.println("\t==Reservation Options==");
@@ -45,26 +46,34 @@ public class ReservationUI {
 			System.out.print("Input your choice: ");
         	System.out.println();
         	
-        	choice = sc.nextInt();
-
-        	switch(choice) {
-        		case 1:
-					createReservationUI();
-        			break;
-        		case 2:
-					listReservationsUI();
-        			break;
-        		case 3:
-					removeReservationUI();
-					break;
-				case 4:
-					showAvailabilityUI();
-					break;
-				case 5:
-        		default:
-        			System.out.println("Exiting Reservation UI...");
-        	}
-        } while (choice < 5);
+        	try {
+				int choice = sc.nextInt();
+				switch (choice) {
+					case 1:
+						createReservationUI();
+						continue;
+					case 2:
+						listReservationsUI();
+						continue;
+					case 3:
+						removeReservationUI();
+						continue;
+					case 4:
+						showAvailabilityUI();
+						continue;
+					case 5:
+						System.out.println("Exiting Reservation UI ...");
+						flag = 0;
+						break;
+					default:
+						System.out.println("Error! Invalid index entered!");
+				}
+			}catch (InputMismatchException ex) {
+				System.out.println("Error! Invalid input entered!");
+				sc.reset();
+				sc.next();
+			}
+        }
 	}
 
 	/**
@@ -79,7 +88,6 @@ public class ReservationUI {
 		System.out.print("Enter Customer Number: ");
 		String phone_no = scan.nextLine();
 		Customer cust = CustomerMgr.getCustomer(phone_no);
-		//get customer ADD CUSTOMER TO DATABASE IF NOT ALREADY IN
 		if (cust == null) {
 			CustomerMgr.createCustomer(phone_no);
 			cust = CustomerMgr.getCustomer(phone_no);
@@ -90,12 +98,17 @@ public class ReservationUI {
 		int pax = scan.nextInt();
 		int tableNum = ReservationMgr.getAvailableTable(pax);
 		scan.nextLine();
-
-		System.out.print("Date and time DD/MM/YYYY HH:mm : ");
-		String dateStr = scan.nextLine();
-		Date date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateStr);
-
-
+		Date date;
+		while (true) {
+			System.out.print("Date and time DD/MM/YYYY HH:mm : ");
+			String dateStr = scan.nextLine();
+			try {
+				date = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(dateStr);
+				break;
+			} catch (ParseException p) {
+				System.out.println("Invalid date-time input. Please enter according to the specified format.");
+			}
+		}
 		ReservationMgr.createReservation(date, pax, tableNum, cust);
 
 	}

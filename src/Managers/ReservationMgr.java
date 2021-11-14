@@ -25,10 +25,10 @@ public class ReservationMgr {
 
     /**
      * Creates the reservation with the given date, pax, table number and customer
-     * @param datetime
-     * @param pax
-     * @param tableNum
-     * @param customer
+     * @param datetime            Date time of reservation
+     * @param pax                 Number of people for this reservation
+     * @param tableNum            Table number allocated to this reservation
+     * @param customer            Customer who made this reservation
      */
 
     public static void createReservation(Date datetime , int pax, int tableNum, Customer customer) {
@@ -47,12 +47,12 @@ public class ReservationMgr {
         ReservationMgr.setReservedTable(reservation);
 
         System.out.println("Reservation Successful. Current Reservations");
-        printReservedTables();
+        printArrivedTables();
     }
 
     /**
      * Vacates a reservation after customer paid.
-     * @param order
+     * @param order               Order for this reservation
      */
 
     public static void vacateReservation(Order order){
@@ -99,10 +99,14 @@ public class ReservationMgr {
      */
 
     public static void printReservedTables() {
+        int flag = 1;
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             if (Restaurant.RestaurantTables.get(i) != null && Restaurant.RestaurantTables.get(i).isArrived() == false) {
                 Restaurant.RestaurantTables.get(i).printReservationDetails();
             }
+        }
+        if (flag == 1) {
+            System.out.println("There are currently no reservations");
         }
     }
 
@@ -111,16 +115,22 @@ public class ReservationMgr {
      */
 
     public static void printArrivedTables() {
+        int flag = 1;
         for (int i = 0; i < Restaurant.RestaurantTables.size(); i++) {
             if (Restaurant.RestaurantTables.get(i) != null) {
                 Restaurant.RestaurantTables.get(i).printReservationDetails();
+                flag = 0;
             }
+        }
+
+        if (flag == 1) {
+            System.out.println("There are currently no reservations");
         }
     }
 
     /**
      * Gets the tables that are available.
-     * @param pax
+     * @param pax                   Number of people for the reservation
      * @return available tables
      */
 
@@ -145,7 +155,7 @@ public class ReservationMgr {
 
     /**
      * Change reserve status of the table.
-     * @param r
+     * @param r                 Table reserved for reservation
      */
 
     public static void setReservedTable(Reservation r) {
@@ -174,7 +184,7 @@ public class ReservationMgr {
 
     /**
      * Change status of arrival for the table.
-     * @param tableNum
+     * @param tableNum              Table number of the reservation which customer just arrived
      * @return the reservation which the customer just arrived
      */
 
@@ -185,7 +195,6 @@ public class ReservationMgr {
 
     /**
      * Display current table availability.
-     * @param
      */
 
     public static void showTableAvailability() {

@@ -47,9 +47,9 @@ public class Customer implements Serializable{
 
 	/**
 	 * Creates a customer with the given name, contact and indicate if customer has a membership.
-	 * @param c_name
-	 * @param c_contact
-	 * @param c_membership
+	 * @param c_name              Name of customer
+	 * @param c_contact           Contact number of customer
+	 * @param c_membership        Membership status of customer
 	 */
 
 	public Customer(String c_name, String c_contact, Boolean c_membership) {
@@ -85,7 +85,7 @@ public class Customer implements Serializable{
 
 	/**
 	 * Change the customer's name
-	 * @param c_name
+	 * @param c_name            Name of customer
 	 */
 
 	public void setCustomerName(String c_name) {
@@ -94,7 +94,7 @@ public class Customer implements Serializable{
 
 	/**
 	 * Change the customer's contact.
-	 * @param cus_contact
+	 * @param cus_contact         Contact number of customer
 	 */
 
 	public void setContact(String cus_contact) {

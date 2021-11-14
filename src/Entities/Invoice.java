@@ -57,7 +57,7 @@ public class Invoice implements Serializable {
     /**
      * This creates the invoice for an order with given date, generated invoice number, price of order
      * gst included and customer from order with the total price of the order including gst and membership status.
-     * @param order
+     * @param order          This invoice's order
      */
 
     public Invoice(Order order){
@@ -68,7 +68,7 @@ public class Invoice implements Serializable {
         this.gst = Math.round(0.07 * this.price * 100.0)/100.0;
         this.cust = this.order.getFromReservation().getCust();
         if (cust.getMembership()) {
-            this.totalPrice = (0.85)*(price + gst);
+            this.totalPrice = Math.round((0.85)*(price + gst))/100.00;
         }
         else this.totalPrice = this.price + this.gst;
     }

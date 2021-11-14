@@ -68,7 +68,7 @@ public abstract class MenuItems implements Serializable {
 
 	/**
 	 * Change the description of the menu item.
-	 * @param desc
+	 * @param desc           Description of this menu item
 	 */
 
 	public void setDescription(String desc) {
@@ -84,7 +84,7 @@ public abstract class MenuItems implements Serializable {
 
 	/**
 	 * Change the price of the menu item.
-	 * @param price
+	 * @param price            Price of this menu item
 	 */
 
 	public abstract void setPrice(double price);

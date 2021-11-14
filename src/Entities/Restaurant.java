@@ -120,7 +120,7 @@ public class Restaurant {
               
             // Method for serialization of object
             out.writeObject(restaurantState);
-              
+			//System.out.println("Object has been serialized");
             out.close();
             file.close();
         }
@@ -144,11 +144,9 @@ public class Restaurant {
 		Path saveData 				= Paths.get(DATAPATH.toString(), RESTAURANT_FILE_NAME);
 		FileInputStream file 		= null;
 		ObjectInputStream in 		= null;
-		
-		// Deserialization
+
         try
-        {   
-            // Reading the object from a file
+        {
             file = new FileInputStream(saveData.toString());
             in = new ObjectInputStream(file);
               
@@ -163,20 +161,20 @@ public class Restaurant {
 				customersList = (ArrayList<Customer>) restaurantState[5];
 				invoices = (ArrayList<Invoice>) restaurantState[6];
 			}
-              
+			//System.out.println("Object has been deserialized");
             in.close();
             file.close();
         }
           
         catch(IOException ex)
         {
-            System.out.println("IOException is caught lolol. lmao no .dat file yet so running default settings.");
+            System.out.println("IOException is caught. No .dat file yet so running default settings.");
             initRestaurant();
         }
           
         catch(ClassNotFoundException ex)
         {
-            System.out.println("ClassNotFoundException is caught. dun troll pls.");
+            System.out.println("ClassNotFoundException is caught.");
             initRestaurant();
         }
 	}

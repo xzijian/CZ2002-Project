@@ -31,8 +31,8 @@ public class SetPackage extends MenuItems implements Serializable {
 
 	/**
 	 * Create a set package with given name, description.
-	 * @param name
-	 * @param desc
+	 * @param name        Name of set package
+	 * @param desc		  Description of set package
 	 */
 
 	public SetPackage(String name, String desc) {
@@ -52,7 +52,7 @@ public class SetPackage extends MenuItems implements Serializable {
 
 	/**
 	 * Change the discount rate of the set packages
-	 * @param rate
+	 * @param rate         Discount rate of set packages
 	 */
 
 	public void setDiscountRate(double rate) {
@@ -71,8 +71,8 @@ public class SetPackage extends MenuItems implements Serializable {
 
 	/**
 	 * Add menu items to the set package.
-	 * @param menu
-	 * @param itemID
+	 * @param menu           arrayList of menu items
+	 * @param itemID		 itemID of the item added
 	 */
 
 	public void addToSet(ArrayList<MenuItems> menu, int itemID) {
@@ -82,7 +82,7 @@ public class SetPackage extends MenuItems implements Serializable {
 	/**
 	 * Delete an item from set package.
 	 * Can only use the itemID to do so.
-	 * @param itemID
+	 * @param itemID			itemID of the item removed
 	 */
 
 	public void deleteFromSet(int itemID) {

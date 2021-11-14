@@ -35,11 +35,11 @@ public class Staff implements Serializable{
 	private String jobTitle;
 
 	/**
-	 * Creates a new staff with given name, gender, id and job title
-	 * @param staffName
-	 * @param gender
-	 * @param employerId
-	 * @param jobTitle
+	 * Creates a new staff with given name, gender, id and job title.
+	 * @param staffName          Name of staff
+	 * @param gender             Gender of staff
+	 * @param employerId         ID of staff
+	 * @param jobTitle           Job title of staff
 	 */
 	
 	public Staff(String staffName, boolean gender, int employerId, String jobTitle) {
@@ -61,7 +61,7 @@ public class Staff implements Serializable{
 
 	/**
 	 * Change the name of the staff
-	 * @param name
+	 * @param name          Name of staff
 	 */
 
 	public void setStaffName(String name) {
@@ -79,7 +79,7 @@ public class Staff implements Serializable{
 
 	/**
 	 * Change the id of the staff.
-	 * @param id
+	 * @param id            ID of staff
 	 */
 
 	public void setEmployeeId(int id) {
@@ -97,7 +97,7 @@ public class Staff implements Serializable{
 
 	/**
 	 * Change the job title of the staff
-	 * @param title
+	 * @param title          Job title of staff
 	 */
 
 	public void setJobTitle(String title) {

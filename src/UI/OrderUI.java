@@ -9,6 +9,7 @@ import Managers.ReservationMgr;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -35,26 +36,38 @@ public class OrderUI {
      */
 
     public static void orderChoices(Staff currentStaff){
+        int flag = 1;
         int choice;
-        do {
+        while (flag == 1) {
             System.out.println("\n\n");
             System.out.println("\t==Order Options==");
             System.out.println("(1) Take a new order");
             System.out.println("(2) Edit Order");
             System.out.println("(3) Back\n");
             System.out.println("Input your choice: ");
-            choice = sc.nextInt();
+            try {
+                choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    takeOrder(currentStaff);
-                    break;
-                case 2:
-                    editPendingOrder();
-                    break;
-                case 3:
+                switch (choice) {
+                    case 1:
+                        takeOrder(currentStaff);
+                        continue;
+                    case 2:
+                        editPendingOrder();
+                        continue;
+                    case 3:
+                        System.out.println("Exiting OrderUI ...");
+                        flag = 0;
+                        break;
+                    default:
+                        System.out.println("Error! Invalid index entered!");
+                }
+            }catch (InputMismatchException ex) {
+                System.out.println("Error! Invalid input entered!");
+                sc.reset();
+                sc.next();
             }
-        } while (choice < 3);
+        }
     }
 
     /**
@@ -74,20 +87,26 @@ public class OrderUI {
             System.out.println("(" + index++ + ") OrderID: " + order1.getOrderID() + "    TableID: " + order1.getFromReservation().getTableNum());
         }
         System.out.println("Enter the number of your choice: ");
-        int choice = sc.nextInt();
-
         try {
-            order = orders.get(choice);
-            OrderMgr.menuShowOrder(order);
-        }catch(IndexOutOfBoundsException e){
-            System.out.println("Invalid index entered!");
+            int choice = sc.nextInt();
+
+            try {
+                order = orders.get(choice);
+                OrderMgr.menuShowOrder(order);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Error! Invalid index entered!");
+            }
+        }catch (InputMismatchException ex) {
+            System.out.println("Error! Invalid input entered!");
+            sc.reset();
+            sc.next();
         }
 
     }
 
     /**
      * Take new order with current staff as the staff taking order.
-     * @param currentStaff
+     * @param currentStaff              Current Staff taking order
      */
 
     public static void takeOrder(Staff currentStaff){
@@ -101,12 +120,22 @@ public class OrderUI {
         if (counter != 11) {
             ReservationMgr.printReservedTables();
             System.out.println("Enter the table number of your choice: ");
-            choice = sc.nextInt();
-            Reservation thisRV = ReservationMgr.reservationArrived(choice);
-            Order newOrder = new Order(currentStaff, thisRV);
-            orders.add(newOrder);
-            OrderMgr.menuShowOrder(newOrder);
-        }
+            try {
+                choice = sc.nextInt();
+                try {
+                    Reservation thisRV = ReservationMgr.reservationArrived(choice);
+                    Order newOrder = new Order(currentStaff, thisRV);
+                    orders.add(newOrder);
+                    OrderMgr.menuShowOrder(newOrder);
+                }catch(IndexOutOfBoundsException ex) {
+                    System.out.println("Error! Invalid index entered!");
+                }
+            }catch (InputMismatchException ex) {
+                System.out.println("Error! Invalid input entered!");
+                sc.reset();
+                sc.next();
+                }
+            }
         else {
             System.out.println("No reservation!");
         }

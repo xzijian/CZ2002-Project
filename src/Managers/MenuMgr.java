@@ -6,6 +6,7 @@ import Entities.Restaurant;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -26,80 +27,130 @@ public class MenuMgr {
 
     /**
      * To add menu items to given arrayList.
-     * @param array
+     * @param array          arrayList of menu items being added to
      */
     public static void addMenuItems(ArrayList<MenuItems> array) {
+        int flag = 1;
         int choice;
-        do {
+        while (flag == 1){
             printCategories();
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    printDrinks();
-                    System.out.println("Enter ID to be added :");
-                    int n = sc.nextInt();
-                    addDrink(n, array);
-                    break;
-                case 2:
-                    printDesserts();
-                    System.out.println("Enter ID to be added :");
-                    int o = sc.nextInt();
-                    addDesserts(o, array);
-                    break;
-                case 3:
-                    printMains();
-                    System.out.println("Enter ID to be added :");
-                    int p = sc.nextInt();
-                    addMain(p, array);
-                    break;
-                case 4:
-                    printSets();
-                    System.out.println("Enter ID to be added :");
-                    int q = sc.nextInt();
-                    addSet(q, array);
-                    break;
-                case 5:
+            try {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        printDrinks();
+                        System.out.println("Enter ID to be added :");
+                        int n = sc.nextInt();
+                        try {
+                            addDrink(n, array);
+                        }catch(IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 2:
+                        printDesserts();
+                        System.out.println("Enter ID to be added :");
+                        int o = sc.nextInt();
+                        try{
+                            addDesserts(o, array);
+                        }catch(IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 3:
+                        printMains();
+                        System.out.println("Enter ID to be added :");
+                        int p = sc.nextInt();
+                        try{
+                            addMain(p, array);
+                        }catch(IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 4:
+                        printSets();
+                        System.out.println("Enter ID to be added :");
+                        int q = sc.nextInt();
+                        try{
+                            addSet(q, array);
+                        }catch(IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 5:
+                        flag = 0;
+                        break;
+                    default:
+                        System.out.println("Error! Invalid index entered!");
+                }
+            }catch(InputMismatchException ex) {
+                System.out.println("Error! Invalid input entered!");
+                sc.reset();
+                sc.next();
             }
-        } while (choice < 5);
+        }
     }
 
     /**
      * To add menu items to given set package.
-     * @param array
+     * @param array             arrayList of menu items in the set having items added to
      */
 
     public static void addMenuItemToSet(ArrayList<MenuItems> array) {
+        int flag = 1;
         int choice;
-        do {
+        while(flag == 1) {
             printCategoriesWoSet();
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    printDrinks();
-                    System.out.println("Enter ID to be added :");
-                    int n = sc.nextInt();
-                    addDrink(n, array);
-                    break;
-                case 2:
-                    printDesserts();
-                    System.out.println("Enter ID to be added :");
-                    int o = sc.nextInt();
-                    addDesserts(o, array);
-                    break;
-                case 3:
-                    printMains();
-                    System.out.println("Enter ID to be added :");
-                    int p = sc.nextInt();
-                    addMain(p, array);
-                    break;
-                case 4:
+            try {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        printDrinks();
+                        System.out.println("Enter ID to be added :");
+                        int n = sc.nextInt();
+                        try{
+                            addDrink(n, array);
+                        }catch(IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 2:
+                        printDesserts();
+                        System.out.println("Enter ID to be added :");
+                        int o = sc.nextInt();
+                        try{
+                            addDesserts(o, array);
+                        }catch(IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 3:
+                        printMains();
+                        System.out.println("Enter ID to be added :");
+                        int p = sc.nextInt();
+                        try{
+                            addMain(p, array);
+                        }catch (IndexOutOfBoundsException ex){
+                            System.out.println("Error! Invalid index entered!");
+                        }
+                        continue;
+                    case 4:
+                        flag = 0;
+                        break;
+                    default:
+                        System.out.println("Error! Invalid index entered!");
+                }
+            }catch(InputMismatchException ex){
+                System.out.println("Error! Invalid input entered!");
+                sc.reset();
+                sc.next();
             }
-        } while (choice < 4);
+        }
     }
 
     /**
      * To remove any menu items from given arrayList.
-     * @param array
+     * @param array                arrayList of menu items having items removed
      */
 
     public static void removeMenuItems(ArrayList<MenuItems> array) {

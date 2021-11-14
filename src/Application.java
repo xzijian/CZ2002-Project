@@ -8,6 +8,7 @@ import UI.ReservationUI;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -56,35 +57,41 @@ public class Application {
             System.out.println("(5) Print Sales Revenue");
             System.out.println("(6) Logout");
             System.out.print("Enter option: ");
-
-            int choice = sc.nextInt();
-
-            switch (choice) {
-                case 1:
-                    ReservationUI.reservationChoices();
-                    continue;
-                case 2:
-                    OrderUI.orderChoices(current_staff);
-                    continue;
-                case 3:
-                    viewMenu();
-                    continue;
-                case 4:
-                    MenuUI.MenuUIOptions();
-                    continue;
-                case 5:
-                    InvoiceMgr.printSalesRevenue();
-                    continue;
-                case 6:
-                    flag = 0;
-                    break;
+            try {
+                int choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        ReservationUI.reservationChoices();
+                        continue;
+                    case 2:
+                        OrderUI.orderChoices(current_staff);
+                        continue;
+                    case 3:
+                        viewMenu();
+                        continue;
+                    case 4:
+                        MenuUI.MenuUIOptions();
+                        continue;
+                    case 5:
+                        InvoiceMgr.printSalesRevenue();
+                        continue;
+                    case 6:
+                        flag = 0;
+                        break;
+                    default:
+                        System.out.println("Error! Invalid index entered!");
+                }
+            }catch(InputMismatchException ex) {
+                System.out.println("Error! Invalid input entered!");
+                sc.reset();
+                sc.next();
             }
         }
     }
 
     /**
      * For user to login to their respective accounts.
-     * @param staffs
+     * @param staffs                arrayList of staff in the restaurant
      * @return Current Staff using
      */
 
@@ -94,8 +101,20 @@ public class Application {
             System.out.println("(" + index++ + ") Employee Name: "  + s.getStaffName());
         }
         System.out.print("Enter Employee ID: ");
-        int choice = sc.nextInt();
-        Staff thisStaff = staffs.get(choice);
+        Staff thisStaff = null;
+        try {
+            int choice = sc.nextInt();
+            try {
+                thisStaff = staffs.get(choice);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Error! Invalid index entered!");
+            }
+        }catch(InputMismatchException ex){
+            System.out.println("Error! Invalid input entered!");
+            sc.reset();
+            sc.next();
+        }
+        
         return thisStaff;
     }
 
@@ -105,35 +124,46 @@ public class Application {
 
     private static void viewMenu(){
         Scanner sc1 = new Scanner(System.in);
+        int flag = 1;
         int choice;
-        do {
+        while(flag == 1) {
             MenuMgr.printCategories();
-            choice = sc1.nextInt();
-            switch (choice){
-                case 1:
-                    MenuMgr.printDrinks();
-                    System.out.print("Enter 1 to back: ");
-                    choice = sc.nextInt();
-                    break;
-                case 2:
-                    MenuMgr.printDesserts();
-                    System.out.print("Enter 1 to back: ");
-                    choice = sc.nextInt();
-                    break;
-                case 3:
-                    MenuMgr.printMains();
-                    System.out.print("Enter 1 to back: ");
-                    choice = sc.nextInt();
-                    break;
-                case 4:
-                    MenuMgr.printSets();
-                    System.out.print("Enter 5 to exit: ");
-                    choice = sc.nextInt();
-                    break;
-                default:
-                    System.out.println("Exiting Menu...");
+            try {
+                choice = sc1.nextInt();
+                switch (choice) {
+                    case 1:
+                        MenuMgr.printDrinks();
+                        System.out.print("Enter 1 to back: ");
+                        choice = sc.nextInt();
+                        continue;
+                    case 2:
+                        MenuMgr.printDesserts();
+                        System.out.print("Enter 1 to back: ");
+                        choice = sc.nextInt();
+                        continue;
+                    case 3:
+                        MenuMgr.printMains();
+                        System.out.print("Enter 1 to back: ");
+                        choice = sc.nextInt();
+                        continue;
+                    case 4:
+                        MenuMgr.printSets();
+                        System.out.print("Enter 5 to exit: ");
+                        choice = sc.nextInt();
+                        continue;
+                    case 5:
+                        System.out.println("Exiting Menu...");
+                        flag = 0;
+                        break;
+                    default:
+                        System.out.println("Error! Invalid index entered!");
+                }
+            }catch(InputMismatchException ex){
+                System.out.println("Error! Invalid input entered!");
+                sc1.reset();
+                sc1.next();
             }
-        } while(choice <5);
+        }
     }
 
 }

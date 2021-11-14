@@ -21,10 +21,10 @@ public class AlaCarte extends MenuItems implements Serializable {
 	private Category categoryType;
 	/**
 	 * Creates the alacarte item given name, description, price and category.
-	 * @param name
-	 * @param desc
-	 * @param price
-	 * @param category
+	 * @param name                Name of alacarte item
+	 * @param desc                Description of alacarte item
+	 * @param price               Price of alacarte item
+	 * @param category            Category of alacarte item
 	 */
 	public AlaCarte(String name, String desc, double price, String category) {
 		super(name, desc);
@@ -41,7 +41,7 @@ public class AlaCarte extends MenuItems implements Serializable {
 	}
 	/**
 	 * Change the price of the alacarte item.
-	 * @param price
+	 * @param price              Price of alacarte item
 	 */
 	@Override
 	public void setPrice(double price) {
@@ -56,7 +56,7 @@ public class AlaCarte extends MenuItems implements Serializable {
 	}
 	/**
 	 * Change the category of the alacarte item.
-	 * @param category
+	 * @param category             Category of this alacarte item
 	 */
 	public void setCategory(String category) {
 		if (category.toUpperCase(Locale.ROOT).equals("DRINK")){

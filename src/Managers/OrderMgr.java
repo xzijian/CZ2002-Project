@@ -5,6 +5,7 @@ import Entities.Order;
 import Entities.Invoice;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Entities.Restaurant;
 
@@ -36,9 +37,10 @@ public class OrderMgr {
      */
 
     public static void menuShowOrder(Order order){
+        int flag = 1;
         Scanner sc = new Scanner(System.in);
         int choice;
-        do {
+        while (flag == 1){
             System.out.println("\nSelect a choice: ");
             System.out.println("(1) Show order details");
             System.out.println("(2) Add order items");
@@ -47,24 +49,33 @@ public class OrderMgr {
             System.out.println("(5) Back");
             System.out.println();
             System.out.println("Enter your choice : ");
-            choice = sc.nextInt();
-
-            switch (choice) {
-                case 1:
-                    orderDetails(order);
-                    break;
-                case 2:
-                    takeOrder(order);
-                    break;
-                case 3:
-                    removeOrderItem(order);
-                    break;
-                case 4:
-                    printInvoice(order);
-                    break;
-                case 5:
+            try {
+                choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        orderDetails(order);
+                        continue;
+                    case 2:
+                        takeOrder(order);
+                        continue;
+                    case 3:
+                        removeOrderItem(order);
+                        continue;
+                    case 4:
+                        printInvoice(order);
+                        continue;
+                    case 5:
+                        flag = 0;
+                        break;
+                    default:
+                        System.out.println("Error! Invalid index entered!");
+                }
+            }catch(InputMismatchException ex) {
+                System.out.println("Error! Invalid input entered!");
+                sc.reset();
+                sc.next();
             }
-        } while (choice < 4);
+        }
     }
 
     /**

@@ -16,9 +16,9 @@ public class CustomerMgr {
 	/**
 	 * Check if a customer exist via their phone number.
 	 * Ensure no duplicate.
-	 * @param name
-	 * @param number
-	 * @param member
+	 * @param name			  Name of customer
+	 * @param number		  Contact number of customer
+	 * @param member		  Membership status of customer
 	 * @return boolean when customer exists in the database
 	 */
 
@@ -38,7 +38,7 @@ public class CustomerMgr {
 
 	/**
 	 * Get customer based on contact number.
-	 * @param number
+	 * @param number          Contact number of customer
 	 * @return customer object
 	 */
 
@@ -56,7 +56,7 @@ public class CustomerMgr {
 
 	/**
 	 * Remove customer from customer arraylist.
-	 * @param number
+	 * @param number            Contact number of customer
 	 */
 
 	public static void removeCustomer(String number) {
@@ -79,7 +79,7 @@ public class CustomerMgr {
 
 	/**
 	 * Create customer if they are not in the database.
-	 * @param number
+	 * @param number			 Contact number of customer
 	 */
 
 	public static void createCustomer(String number) {

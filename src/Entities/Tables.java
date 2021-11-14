@@ -50,9 +50,9 @@ public class Tables implements Serializable {
     /**
      * Creating the tables of two, six and ten with the
      * given values.
-     * @param numOfTablesOfTwo
-     * @param numOfTablesOfSix
-     * @param numOfTablesOfTen
+     * @param numOfTablesOfTwo          Number of tables that seats two
+     * @param numOfTablesOfSix          Number of tables that seats six
+     * @param numOfTablesOfTen          Number of tables that seat ten
      */
 
     public Tables(int numOfTablesOfTwo, int numOfTablesOfSix, int numOfTablesOfTen)
@@ -99,7 +99,7 @@ public class Tables implements Serializable {
 
     /**
      * Remove the reservation based on the customer
-     * @param cust
+     * @param cust            Customer who made the reservation
      */
 
     public static void RemoveReservationByCustomer(Customer cust) {

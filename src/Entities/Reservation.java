@@ -51,11 +51,11 @@ public class Reservation implements Serializable {
     /**
      * Creates a reservation with the given datetime,
      * number of pax, table number, customer and the status of arrival.
-     * @param datetime
-     * @param numOfPax
-     * @param tableNum
-     * @param cust
-     * @param arrived
+     * @param datetime           Date Time of the reservation
+     * @param numOfPax           Number of people for this reservation
+     * @param tableNum           Table number of this reservation
+     * @param cust               Customer who made the reservation
+     * @param arrived            If the customer have arrived
      */
 
     public Reservation(Date datetime, int numOfPax, int tableNum, Customer cust, boolean arrived) {
